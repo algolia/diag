@@ -1,0 +1,47 @@
+{
+  "name": "algolia-diag",
+  "version": "0.0.0",
+  "description": "Diagnostic network issues while connecting to Algolia",
+  "main": "index.js",
+  "scripts": {
+    "build": "PACKAGE_VERSION=$(json -f src/version.json) ./scripts/build",
+    "prepublish": "APP_ENV=production npm run build",
+    "release": "rm dist/* -f && ./scripts/release",
+    "test": "npm run lint",
+    "dev": "webpack-dev-server",
+    "lint": "eslint --ignore-pattern dist/ --quiet ."
+  },
+  "repository": "algolia/diag",
+  "keywords": [
+    "algolia",
+    "diagnostic"
+  ],
+  "dependencies": {
+    "algoliasearch": "3.6.0",
+    "debug": "2.2.0",
+    "tap-parser": "1.1.6",
+    "tape": "4.0.0",
+    "ua-parser-js": "0.7.7"
+  },
+  "devDependencies": {
+    "browserify": "10.2.4",
+    "bundle-collapser": "1.2.0",
+    "css-loader": "0.14.4",
+    "eslint": "0.22.1",
+    "json": "9.0.3",
+    "mversion": "1.10.0",
+    "node-libs-browser": "0.5.2",
+    "pretty-bytes": "2.0.1",
+    "semver": "4.3.6",
+    "style-loader": "0.12.3",
+    "webpack": "1.9.10",
+    "webpack-dev-server": "1.9.0"
+  },
+  "homepage": "https://github.com/algolia/diag",
+  "bugs": "https://github.com/algolia/diag/issues",
+  "author": "Algolia SAS <support@algolia.com> (https://www.algolia.com)",
+  "engines": {
+    "node": ">=0.8"
+  },
+  "license": "MIT"
+}
