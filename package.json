@@ -19,18 +19,18 @@
   "dependencies": {
     "algoliasearch": "3.6.0",
     "debug": "2.2.0",
+    "humanize-number": "0.0.2",
+    "superagent": "1.2.0",
     "tap-parser": "1.1.6",
     "tape": "4.0.0",
     "ua-parser-js": "0.7.7"
   },
   "devDependencies": {
-    "browserify": "10.2.4",
     "bundle-collapser": "1.2.0",
     "css-loader": "0.14.4",
     "eslint": "0.22.1",
     "json": "9.0.3",
     "mversion": "1.10.0",
-    "node-libs-browser": "0.5.2",
     "pretty-bytes": "2.0.1",
     "semver": "4.3.6",
     "style-loader": "0.12.3",

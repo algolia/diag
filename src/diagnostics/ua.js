@@ -1,4 +1,5 @@
 var test = require('tape');
+
 var util = require('util');
 
 test('user-agent', function(t) {
@@ -10,9 +11,10 @@ test('user-agent', function(t) {
 
   t.pass(
     util.format(
-      'browser: %s %s %s',
+      'browser: %s %s (%s)',
       ua.browser.name,
-      ua.browser.major
+      ua.browser.major,
+      ua.browser.version
     )
   );
 

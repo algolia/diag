@@ -11,10 +11,15 @@ function diag(HTMLElement) {
   var tap = tapDom(HTMLElement);
 
   require('./diagnostics/ua.js');
+  require('./diagnostics/geolocation.js');
+  require('./diagnostics/navigation-timing.js');
+  require('./diagnostics/famous-websites.js');
+  // require('./diagnostics/algolia-raw-api');
+  // require('./diagnostics/algolia-client-js');
 
   test('end of diagnostic', function(t) {
     t.plan(1);
-    t.pass('we end here');
+    t.pass('thanks!');
     process.nextTick(function() {
       tap.end();
     });
