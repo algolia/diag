@@ -1,0 +1,28 @@
+html {
+  overflow-y: scroll;
+}
+
+.tap-dom .test .assert {
+  padding-left: 1em;
+}
+
+.tap-dom .test {
+  margin-bottom: 1em;
+}
+
+.page {
+  display: none;
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+
+.progress {
+  margin-top: 10px;
+}
+
+#done {
+  display: none;
+}

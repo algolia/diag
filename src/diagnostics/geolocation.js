@@ -1,14 +1,20 @@
-var test = require('tape');
+module.exports = geolocation;
 
-var util = require('util');
+function geolocation(cb) {
+  var util = require('util');
 
-var request = require('superagent');
+  var partial = require('lodash/function/partial');
+  var request = require('superagent');
 
-test('geolocation', function(t) {
-  t.plan(1);
+  var dataset = {
+    title: 'Geolocation (browser + //nominatim.openstreetmap.org/reverse)',
+    header: ['display_name', 'latitude', 'longitude'],
+    data: []
+  };
 
   if (!('geolocation' in navigator)) {
-    t.skip('browser does not support `navigator.geolocation`');
+    dataset.data.push(['err: geolocation API not available']);
+    process.nextTick(partial(cb, null, dataset));
     return;
   }
 
@@ -23,31 +29,45 @@ test('geolocation', function(t) {
   function positionSuccess(position) {
     request
       .get('//nominatim.openstreetmap.org/reverse')
+      .timeout(20000)
       .query({
         format: 'json',
         lat: position.coords.latitude,
         lon: position.coords.longitude,
         addressdetails: 1
       })
-      .end(function(err, res) {
-        if (err) {
-          t.skip(
-            util.format(
-              'cannot reverse geocode position (%s,%s), error was: %s',
-              position.coords.latitude,
-              position.coords.longitude,
-              err
-            )
-          );
-          return;
-        }
+      .end(reverseGeocodeDone);
 
-        t.pass(res.body.display_name);
-      });
+    function reverseGeocodeDone(err, res) {
+      if (err) {
+        dataset.data.push([
+          util.format(
+            'err: could not reverse geocode position, error was %s',
+            err
+          ),
+          position.coords.latitude,
+          position.coords.longitude
+        ]);
+      } else {
+        dataset.data.push([
+          res.body.display_name,
+          position.coords.latitude,
+          position.coords.longitude
+        ]);
+      }
+
+      cb(null, dataset);
+    }
   }
 
   function positionError(err) {
-    t.skip('could not get your position, error was: ' + err.message);
-  }
+    dataset.data.push([
+      util.format(
+        'err: could not get position, error was %s',
+        err.message
+      )
+    ]);
 
-});
+    cb(null, dataset);
+  }
+}

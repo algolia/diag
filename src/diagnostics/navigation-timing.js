@@ -1,29 +1,23 @@
-var test = require('tape');
+module.exports = navigationTiming;
 
-var util = require('util');
+function navigationTiming(cb) {
+  var partial = require('lodash/function/partial');
 
-var humanize = require('humanize-number');
+  var formatTiming = require('../format-timing');
 
-test('navigation timing (current page)', function(t) {
-  t.plan(1);
+  var dataset = {
+    title: 'Navigation timing from current page (ms)',
+    header: formatTiming.header,
+    data: []
+  };
 
   if (!('performance' in window)) {
-    t.skip('browser does not support `navigator.geolocation`');
-    return;
+    dataset.data.push(['err: browser does not support `window.performance`']);
+  } else {
+    var timing = window.performance.timing;
+
+    dataset.data.push(formatTiming(timing));
   }
 
-  var perf = window.performance.timing;
-
-  t.pass(
-    util.format(
-      'connect: %sms (ssl: %s), dns: %sms, download: %sms, fetch: %sms',
-      humanize(perf.connectEnd - perf.connectStart),
-      perf.secureConnectionStart && humanize(perf.connectEnd - perf.secureConnectionStart) + 'ms' || 'n/a',
-      humanize(perf.domainLookupEnd - perf.domainLookupStart),
-      humanize(perf.responseEnd - perf.requestStart),
-      // on IE most of the time connect and dns are unreliable, the only network
-      // measurement we have then is:
-      humanize(perf.responseEnd - perf.fetchStart)
-    )
-  );
-});
+  process.nextTick(partial(cb, null, dataset));
+}

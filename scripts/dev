@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+npm run webpack-watch & npm run browser-sync & wait

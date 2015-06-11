@@ -1,17 +1,8 @@
 module.exports = {
-  // add sourcemap
-  devtool: 'eval',
-  entry: {
-    app: './example/app.js'
-  },
+  entry: './index.js',
   output: {
-    path: './dist/',
-    publicPath: '/',
-    filename: 'diag.js'
-  },
-  devServer: {
-    contentBase: './example/',
-    inline: true
+    path: './public/',
+    filename: 'app.js'
   },
   node: {
     fs: 'empty'
