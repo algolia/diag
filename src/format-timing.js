@@ -5,7 +5,7 @@ function formatTiming(timing) {
 
   return [
     humanize(Math.round(timing.connectEnd - timing.connectStart)),
-    location.protocol === 'https:' ? humanize(Math.round(timing.connectEnd - timing.secureConnectionStart)) : 'n/a',
+    location.protocol === 'https:' && timing.secureConnectionStart !== 0 ? humanize(Math.round(timing.connectEnd - timing.secureConnectionStart)) : 'n/a',
     humanize(Math.round(timing.domainLookupEnd - timing.domainLookupStart)),
     humanize(Math.round(timing.responseStart - timing.connectEnd)),
     humanize(Math.round(timing.responseEnd - timing.responseStart)),
