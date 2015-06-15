@@ -22,11 +22,9 @@
   "dependencies": {
     "algoliasearch": "3.6.0",
     "async": "1.2.1",
-    "debug": "2.2.0",
     "humanize-number": "0.0.2",
     "lodash": "3.9.3",
     "queue": "3.1.0",
-    "rasterizehtml": "1.1.0",
     "superagent": "1.2.0",
     "ua-parser-js": "0.7.7"
   },
