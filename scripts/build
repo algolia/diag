@@ -12,11 +12,12 @@ var uglify = require('gulp-uglify');
 
 var sources = [
   'frontend/index.html',
-  'frontend/bundle.js'
+  'frontend/bundle.js',
+  'frontend/CNAME'
 ];
 
 var assetsFilter = filter([
-  '**/*', '!index.html'
+  '**/*', '!index.html', '!CNAME'
 ]);
 
 var indexFilter = filter('index.html');
