@@ -1,14 +1,6 @@
 /* global ZeroClipboard */
 var util = require('util');
 
-$('.restart').attr('href',
-  util.format(
-    '/?page=%s&t=%d',
-    'diagnostic',
-    Date.now()
-  )
-);
-
 var diag = require('../diag');
 
 var $progress = $('.progress-bar');
@@ -24,6 +16,7 @@ diagnostic.once('end', onEnd);
 diagnostic.on('timeout', onTimeout);
 
 initCopyButton();
+updateRestartButton();
 
 // update progress bar max value
 $progress.attr('aria-valuemax', diagnostic.length);
@@ -103,4 +96,14 @@ function updateProgress() {
     .attr('aria-valuenow', done)
     .text('Tests: ' + done + '/' + diagnostic.length)
     .css('width', done / diagnostic.length * 100 + '%');
+}
+
+function updateRestartButton() {
+  $('.restart').attr('href',
+    util.format(
+      '?page=%s&t=%d',
+      'diagnostic',
+      Date.now()
+    )
+  );
 }
