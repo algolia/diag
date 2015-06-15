@@ -7,12 +7,12 @@
   "scripts": {
     "build": "webpack && ./scripts/build",
     "serve-build": "browser-sync start --server public/ --no-open",
-    "release": "rm dist/* -f && ./scripts/release",
     "test": "npm run lint",
     "webpack-watch": "webpack -d --watch --colors --progress",
     "browser-sync": "browser-sync start --server frontend/ --files 'frontend/*' --no-open",
     "dev": "./scripts/dev",
-    "lint": "eslint --quiet ."
+    "lint": "eslint --quiet .",
+    "publish": "./scripts/publish"
   },
   "repository": "algolia/diag",
   "keywords": [
