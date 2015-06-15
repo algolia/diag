@@ -1,4 +1,4 @@
-require('./index.css');
+require('./frontend/index.css');
 
 var querystring = require('querystring');
 var page = querystring.parse(location.search.slice(1)).page || 'home';

@@ -7,6 +7,8 @@ function userAgent(cb) {
   var parser = new UaParser(navigator.userAgent);
   var ua = parser.getResult();
 
+  var date = new Date();
+
   var dataset = {
     title: 'User-agent',
     header: [
@@ -16,7 +18,9 @@ function userAgent(cb) {
       'os-name',
       'os-version',
       'timestamp',
-      'timezone'
+      'timezone',
+      'timezone offset from UTC (minutes)',
+      'local time'
     ],
     data: [[
       ua.browser.name,
@@ -25,7 +29,9 @@ function userAgent(cb) {
       ua.os.name,
       ua.os.version,
       Date.now(),
-      Intl && Intl.DateTimeFormat().resolvedOptions().timeZone
+      Intl && Intl.DateTimeFormat().resolvedOptions().timeZone,
+      date.getTimezoneOffset && date.getTimezoneOffset(),
+      date.toString()
     ]]
   };
 

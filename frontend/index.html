@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
   <title>Algolia diagnostic tool</title>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap-theme.min.css">
@@ -48,11 +49,14 @@
           <button id="copy" class="btn btn-default btn-lg" role="button">copy</button> then send the results to support@algolia.com or <a href="#" class="restart btn btn-default btn-lg" role="button">restart</a>
         </p>
       </div>
+
+      <h2>Output:</h2>
+      <pre id="out"></pre>
     </div>
   </div>
 
   <script src="//cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/zeroclipboard/2/ZeroClipboard.min.js"></script>
-  <script src="public/app.js"></script>
+  <script src="bundle.js"></script>
 </body>
 </html>

@@ -9,36 +9,27 @@ $('.restart').attr('href',
   )
 );
 
-var $progress = $('.progress-bar');
-var result = '';
-
 var diag = require('../diag');
-var diagnostic = diag();
 
-diagnostic.once('error', function(err, job) {
-  console.error(err, job.name);
-  throw err;
-});
-
-diagnostic.once('end', function() {
-  console.log('end');
-  $('#done').show();
-  $('#run').hide();
-});
-
-diagnostic.on('timeout', function(job) {
-  console.log('timeout', job.name);
-});
+var $progress = $('.progress-bar');
+var $out = $('#out');
 
 var done = 0;
+var result = '';
+var diagnostic = diag();
+
+diagnostic.on('dataset', onDataset);
+diagnostic.once('error', onError);
+diagnostic.once('end', onEnd);
+diagnostic.on('timeout', onTimeout);
+
+initCopyButton();
+
+// update progress bar max value
 $progress.attr('aria-valuemax', diagnostic.length);
 
-diagnostic.on('dataset', function(dataset) {
-  done++;
-  $progress
-    .attr('aria-valuenow', done)
-    .text('Tests: ' + done + '/' + diagnostic.length)
-    .css('width', done / diagnostic.length * 100 + '%');
+function onDataset(dataset) {
+  updateProgress();
 
   if (Array.isArray(dataset)) {
     dataset.forEach(function(subDataset) {
@@ -47,20 +38,69 @@ diagnostic.on('dataset', function(dataset) {
   } else {
     showDataset(dataset.title, dataset.header, dataset.data);
   }
-});
-
-function showDataset(title, header, data) {
-  var AsciiTable = require('ascii-table');
-  var table = new AsciiTable().fromJSON({
-    title: title,
-    heading: header,
-    rows: data
-  });
-
-  result += table.toString() + '\n';
 }
 
-var client = new ZeroClipboard(document.getElementById('copy'));
-client.on('copy', function(event) {
-  event.clipboardData.setData('text/plain', result);
-});
+function showDataset(title, header, data) {
+  var formattedDataset = '';
+
+  formattedDataset += '==============\n';
+  formattedDataset += title + '\n';
+  formattedDataset += '==============\n';
+  formattedDataset += data.reduce(formatRow, '');
+  formattedDataset += '\n\n';
+
+  function formatRow(out, row, rowIndex, rows) {
+    return out + (rows.length > 1 ? '\n# ' + rowIndex : '') + '\n' + row.reduce(formatRowValues, '');
+  }
+
+  function formatRowValues(out, rowValue, rowValueIndex) {
+    return out + '  ⚫ ' + header[rowValueIndex] + ' → ' + rowValue + '\n';
+  }
+
+  write(formattedDataset);
+}
+
+function initCopyButton() {
+  var client = new ZeroClipboard(document.getElementById('copy'));
+  client.on('copy', function(event) {
+    event.clipboardData.setData('text/plain', result);
+  });
+}
+
+function onEnd() {
+  write('\n==============\n');
+  write('END');
+  write('\n==============\n');
+  $('#done').show();
+  $('#run').hide();
+}
+
+function onError(err, job) {
+  write('\n==============\n');
+  write('Error\n');
+  write(err);
+  write(job.name);
+  write('\n==============\n');
+  throw err;
+}
+
+function write(chunk) {
+  $out[0].innerHTML += chunk;
+  result += chunk;
+}
+
+function onTimeout(job) {
+  write('\n==============\n');
+  write('Timeout\n');
+  write(job.name);
+  write('\n==============\n');
+}
+
+function updateProgress() {
+  done++;
+
+  $progress
+    .attr('aria-valuenow', done)
+    .text('Tests: ' + done + '/' + diagnostic.length)
+    .css('width', done / diagnostic.length * 100 + '%');
+}

@@ -6,7 +6,8 @@ function ip(cb) {
   var request = require('superagent');
   var dataset = {
     header: ['request ip'],
-    data: []
+    data: [],
+    title: 'request ip'
   };
 
   request

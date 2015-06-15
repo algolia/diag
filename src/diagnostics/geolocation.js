@@ -22,7 +22,9 @@ function geolocation(cb) {
     positionSuccess,
     positionError, {
       // timeout does not take into accout the authorization waiting time
-      timeout: 20000
+      timeout: 20000,
+      maximumAge: 0,
+      enableHighAccuracy: true
     }
   );
 
