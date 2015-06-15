@@ -6,13 +6,13 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack && ./scripts/build",
-    "prepublish": "APP_ENV=production npm run build",
+    "serve-build": "browser-sync start --server public/ --no-open",
     "release": "rm dist/* -f && ./scripts/release",
     "test": "npm run lint",
     "webpack-watch": "webpack -d --watch --colors --progress",
     "browser-sync": "browser-sync start --server frontend/ --files 'frontend/*' --no-open",
     "dev": "./scripts/dev",
-    "lint": "eslint --ignore-pattern dist/ --quiet ."
+    "lint": "eslint --quiet ."
   },
   "repository": "algolia/diag",
   "keywords": [
@@ -31,10 +31,10 @@
     "ua-parser-js": "0.7.7"
   },
   "devDependencies": {
-    "browser-sync": "2.7.7",
+    "browser-sync": "2.7.10",
     "bundle-collapser": "1.2.0",
-    "css-loader": "0.14.4",
-    "eslint": "0.22.1",
+    "css-loader": "0.14.5",
+    "eslint": "0.23.0",
     "gulp": "3.9.0",
     "gulp-filter": "2.0.2",
     "gulp-if": "1.2.5",
@@ -48,7 +48,7 @@
     "pretty-bytes": "2.0.1",
     "semver": "4.3.6",
     "style-loader": "0.12.3",
-    "webpack": "1.9.10",
+    "webpack": "1.9.11",
     "webpack-dev-server": "1.9.0"
   },
   "homepage": "https://github.com/algolia/diag",
