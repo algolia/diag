@@ -8,8 +8,8 @@ function faviconsTiming(cb) {
     'www.baidu.com',
     'www.yandex.ru',
     'www.google.com.br',
-    'www.yahoo.co.jp',
-    'www.jumia.com'
+    'www.jumia.com',
+    'www.google.co.jp'
   ];
 
   var dataset = {
