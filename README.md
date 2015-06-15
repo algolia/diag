@@ -14,7 +14,7 @@ npm run build
 npm run serve-build
 ```
 
-## publish (http://algolia.github.io/diag/)
+## publish (https://algolia.github.io/diag/)
 
 ```sh
 npm run publish
