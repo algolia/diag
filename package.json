@@ -12,7 +12,7 @@
     "browser-sync": "browser-sync start --server frontend/ --files 'frontend/*' --no-open",
     "dev": "./scripts/dev.sh",
     "lint": "eslint --quiet .",
-    "publish": "./scripts/publish.js"
+    "publish": "npm run build && ./scripts/publish.js"
   },
   "repository": "algolia/diag",
   "keywords": [
