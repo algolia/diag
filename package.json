@@ -5,14 +5,14 @@
   "description": "Diagnostic network issues while connecting to Algolia",
   "main": "index.js",
   "scripts": {
-    "build": "webpack && ./scripts/build",
+    "build": "webpack && ./scripts/build.js",
     "serve-build": "browser-sync start --server public/ --no-open",
     "test": "npm run lint",
     "webpack-watch": "webpack -d --watch --colors --progress",
     "browser-sync": "browser-sync start --server frontend/ --files 'frontend/*' --no-open",
-    "dev": "./scripts/dev",
+    "dev": "./scripts/dev.sh",
     "lint": "eslint --quiet .",
-    "publish": "./scripts/publish"
+    "publish": "./scripts/publish.js"
   },
   "repository": "algolia/diag",
   "keywords": [
@@ -35,6 +35,7 @@
     "eslint": "0.23.0",
     "gulp": "3.9.0",
     "gulp-filter": "2.0.2",
+    "gulp-gh-pages": "0.5.2",
     "gulp-if": "1.2.5",
     "gulp-minify-html": "1.0.3",
     "gulp-rev": "4.0.0",

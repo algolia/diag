@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-set -e # exit when error
-
-npm run build
-
-GIT_DEPLOY_DIR=public GIT_DEPLOY_BRANCH=gh-pages scripts/deploy.sh
