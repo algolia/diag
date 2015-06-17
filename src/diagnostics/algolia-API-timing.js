@@ -17,7 +17,7 @@ function algoliaAPITiming(cb) {
   var appId = 'test';
   var path = '/diag';
   var runs = 10;
-  var subTitle = 'Timing %s (ms), 100kb response';
+  var subTitle = 'Timing %s (ms)';
 
   var urls = [
     '%s//%s-dsn.algolia.net%s',

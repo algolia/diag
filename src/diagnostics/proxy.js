@@ -1,12 +1,12 @@
-module.exports = ip;
+module.exports = proxy;
 
-function ip(cb) {
+function proxy(cb) {
   var util = require('util');
 
   var request = require('superagent');
   var dataset = {
-    title: 'request ip',
-    header: ['request ip'],
+    title: 'proxy detection',
+    header: ['proxy'],
     data: []
   };
 
@@ -19,12 +19,12 @@ function ip(cb) {
     if (err) {
       dataset.data.push([
         util.format(
-          'err: cannot get ip, err was: %s',
+          'err: cannot detect proxy, err was: %s',
           err
         )
       ]);
     } else {
-      dataset.data.push([res.headers['x-diag-ip'] || 'not found']);
+      dataset.data.push([res.headers['x-diag-proxy'] || 'not found']);
     }
 
     cb(null, dataset);

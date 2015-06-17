@@ -49,3 +49,7 @@ html {
 .jumbotron {
   background-color: #fff
 }
+
+#advanced-options-form {
+  margin-top: 1em;
+}

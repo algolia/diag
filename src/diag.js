@@ -16,10 +16,12 @@ function diag() {
   [
     'user-agent',
     'ip',
+    'proxy',
     'geolocation',
     'navigation-timing',
     'favicons-timing',
-    'algolia-API-timing'
+    'algolia-API-timing',
+    'empty-search'
   ].map(requireIt).forEach(addToQueue);
 
   // diagnostic is a function here, it was required earlier

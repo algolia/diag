@@ -25,7 +25,38 @@
           connecting to Algolia from your browser/network.
         </p>
 
-        <a id="start" href="#" class="btn btn-primary btn-lg" role="button">Start</a>
+        <form class="form-inline" method="GET">
+          <p>
+            <button type="submit" id="start" href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Start</button>
+          </p>
+
+          <div class="advanced-options">
+            <a role="button" data-toggle="collapse" href="#advanced-options-form" aria-expanded="false" aria-controls="advanced-options-form">
+              <span class="caret"></span> Options
+            </a>
+
+            <div class="panel panel-default collapse" id="advanced-options-form">
+              <div class="panel-body">
+                <div class="alert alert-warning" role="alert">Unless you know what you are doing, you do not need to change this</div>
+
+                <div class="form-group">
+                  <label for="applicationId">Application ID</label>
+                  <input type="text" class="form-control" id="applicationId" placeholder="applicationId" value="latency" name="applicationId" required>
+                </div>
+                <div class="form-group">
+                  <label for="apiKey">API key</label>
+                  <input type="text" class="form-control" id="apiKey" placeholder="apiKey" value="6be0576ff61c053d5f9a3225e2a90f76" name="apiKey" required>
+                </div>
+                <div class="form-group">
+                  <label for="indexName">Index name</label>
+                  <input type="text" class="form-control" id="indexName" placeholder="indexName" value="contacts" name="indexName" required>
+                </div>
+                <input type="hidden" name="page" value="run" />
+                <input type="hidden" name="t" />
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
 
       <div id="run" class="page">
@@ -46,7 +77,7 @@
         <div class="alert alert-success" role="alert" id="done">
           <p>
             Success!
-            <button id="copy" title="allright!" data-trigger="manual" class="btn btn-default btn-lg" role="button">Copy</button> the output and send it to support@algolia.com. You can also <a href="#" class="restart btn btn-default btn-lg" role="button">start again</a>
+            <button id="copy" title="Allright!" data-trigger="manual" class="btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy</button> the output and send it to support@algolia.com. You can also <a href="?page=home" class="restart btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Start again</a>.
           </p>
         </div>
 
@@ -59,6 +90,7 @@
   <script src="//cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/bootstrap/3/js/bootstrap.min.js"></script>
   <script src="//cdn.jsdelivr.net/zeroclipboard/2/ZeroClipboard.min.js"></script>
+  <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.js"></script>
   <script src="bundle.js"></script>
 </body>
 </html>

@@ -15,29 +15,21 @@ function result(datasets) {
 
   var flow = require('lodash/function/flow');
 
+  // some error messages can contain <htmltag> so we htmlentities the
+  // .textContent = out, otherwise we may break the page
+  var encode = require('entities').encodeHTML;
+  var decode = require('entities').decodeHTML;
+
   var formatDataset = require('../format-dataset');
 
   var $out = $('#out');
   var out = '';
 
-  updateRestartButton();
   initCopyButton();
 
-  function updateRestartButton() {
-    var util = require('util');
+  var formatCleanAndWrite = flow(formatDataset, encode, write);
 
-    $('.restart').attr('href',
-      util.format(
-        '?page=%s&t=%d',
-        'run',
-        Date.now()
-      )
-    );
-  }
-
-  var formatAndWrite = flow(formatDataset, write);
-
-  datasets.forEach(formatAndWrite);
+  datasets.forEach(formatCleanAndWrite);
 
   write('==============\n');
   write('END');
@@ -56,7 +48,7 @@ function result(datasets) {
 
     var client = new ZeroClipboard($copy);
     client.on('copy', function(event) {
-      event.clipboardData.setData('text/plain', out + linkToResults());
+      event.clipboardData.setData('text/plain', decode(out + linkToResults()));
     });
 
     $copy.on('click', function() {
