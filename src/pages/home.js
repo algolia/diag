@@ -1,9 +1,13 @@
-var util = require('util');
+module.exports = home;
 
-$('#start').attr('href',
-  util.format(
-    '?page=%s&t=%d',
-    'diagnostic',
-    Date.now()
-  )
-);
+function home() {
+  var util = require('util');
+
+  $('#start').attr('href',
+    util.format(
+      '?page=%s&t=%d',
+      'run',
+      Date.now()
+    )
+  );
+}

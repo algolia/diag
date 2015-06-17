@@ -19,15 +19,33 @@ html {
   align-items: center;
 }
 
-.progress {
-  margin-top: 10px;
-}
-
-#done {
-  display: none;
-}
-
 #out {
   height: 400px;
   overflow-y: scroll;
+}
+
+.jumbotron h1 {
+  margin-bottom: .5em;
+  color: #0C1724;
+}
+
+.jumbotron img {
+  vertical-align: bottom;
+}
+
+.progress {
+  height: 40px;
+}
+
+.progress .progress-bar {
+  line-height: 40px;
+  font-size: 1.2em;
+}
+
+.progress span, .progress img {
+  vertical-align: middle;
+}
+
+.jumbotron {
+  background-color: #fff
 }
