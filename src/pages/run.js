@@ -35,7 +35,7 @@ function run() {
       history.replaceState &&
       history.replaceState({
         page: 'result'
-      }, null, '/?page=result&' + URLON.stringify(datasets));
+      }, null, document.location.pathname + '?page=result&' + URLON.stringify(datasets));
   }
 
   function onError(err, job) {

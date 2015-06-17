@@ -70,7 +70,7 @@ function result(datasets) {
 
   function linkToResults() {
     return '\n==============\nPermalink\n==============\n' +
-      document.location.origin + '/?page=result&' + URLON.stringify(datasets) +
+      document.location.origin + document.location.pathname + '?page=result&' + URLON.stringify(datasets) +
       '\n==============\n';
   }
 }
