@@ -13,21 +13,18 @@
 </head>
 <body id="algolia-tools">
 
-  <nav class="navbar navbar-fixed-top navbar-inverse">
+  <nav class="navbar navbar-fixed-top">
     <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">
-          <span><img alt="Algolia" src="https://d3ibatyzauff7b.cloudfront.net/assets/algolia256x80_dark.png" width="110"></span>
-          <span>Developpers</span>
+      <div class="navbar-header pull-left">
+        <a class="navbar-brand" href="/" title="start again">
+          <img alt="Algolia" src="https://d3ibatyzauff7b.cloudfront.net/assets/algolia256x80_dark.png" width="128" height="44">
         </a>
       </div>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav pull-right">
-          <li class="active">
-            <a href="#">Tools</a>
-          </li>
+
+      <div class="pull-right">
+        <ul class="nav navbar-nav">
           <li>
-            <a href="https://www.algolia.com/doc">Documentation</a>
+            <a href="https://github.com/algolia/diag" title="Go to gituhb repository for this project"><img class="mark-github" src="mark-github.svg" width="32" height="32"></a>
           </li>
         </ul>
       </div><!-- /.nav-collapse -->
@@ -83,6 +80,7 @@
         <div class="alert alert-info" role="alert" id="done">
           <p>Please <b>wait here</b> while the diagnostic is running, it should not take too long.
           </p>
+          <p>Current diagnostic: <b id="current-diagnostic"></b></p>
         </div>
 
         <div class="progress">
@@ -102,11 +100,14 @@
           </p>
         </div>
 
-        <h2>Output</h2>
-        <p class="copy-failed text-right">
-          If "copy" button did not work, <button id="select-all" class="btn btn-default btn-sm" role="button">Select all text</button>
-          then copy the output manually.
-        </p>
+
+        <div class="results clearfix">
+          <h2 class="pull-left">Output</h2>
+          <p class="copy-failed text-right">
+            If "copy" button did not work, <button id="select-all" class="btn btn-default btn-xs" role="button">Select all text</button>
+            then copy the output manually.
+          </p>
+        </div>
 
         <textarea id="out" readonly></textarea>
       </div>

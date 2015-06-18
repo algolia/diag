@@ -16,6 +16,7 @@ var sources = [
   'frontend/index.css',
   'frontend/bundle.js',
   'frontend/loader.svg',
+  'frontend/mark-github.svg',
   'frontend/boomerang.min.js',
   'frontend/boomerang/images/*',
   'frontend/CNAME'

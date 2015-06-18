@@ -9,31 +9,19 @@ body {
   background: #0B1623;
 }
 
-#algolia-tools .navbar-brand span {
-  position: relative;
-  top: -4px;
-  font-size: .9em;
-  text-transform: uppercase;
-  color: white;
-}
-#algolia-tools .navbar-brand img {
-  position: relative;
-  top: -5px;
-  vertical-align: middle;
-}
-
 #algolia-tools h1 {
   font-weight: 300;
   font-size: 3em;
   font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
 #algolia-tools h2 {
   font-weight: 600;
   font-size: 1.8em;
   font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-#algolia-tools .btn{
+#algolia-tools .btn {
   box-shadow: none;
   border: none;
   text-shadow: none;
@@ -59,14 +47,6 @@ body {
   background: transparent;
   box-shadow: none;
   border-width: 2px;
-}
-
-.tap-dom .test .assert {
-  padding-left: 1em;
-}
-
-.tap-dom .test {
-  margin-bottom: 1em;
 }
 
 .page {
@@ -101,7 +81,7 @@ body {
 }
 
 .container .copy-failed {
-  font-size: 1.1em;
+  font-size: 0.9em;
 }
 
 textarea#out {
@@ -113,4 +93,34 @@ textarea#out {
   -webkit-transition-duration: .20s;
        -o-transition-duration: .20s;
           transition-duration: .20s;
+}
+
+#algolia-tools .navbar-brand {
+  height: 62px;
+  padding: 0 15px;
+  line-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#algolia-tools a[href="https://github.com/algolia/diag"]:hover,
+#algolia-tools a[href="https://github.com/algolia/diag"]:active {
+  background: transparent;
+}
+
+.results {
+  padding-top: .5em;
+  margin-bottom: 1.5em;
+}
+
+.results h2, .results p {
+  margin: 0;
+  padding: 0;
+}
+
+.results p {
+  position: relative;
+  /* omfg css fix */
+  top: 10px;
 }
