@@ -26,7 +26,8 @@ function boomerang(cb) {
     BW: {
       base_url: '//' + location.host + location.pathname + '/boomerang/images/',
       block_beacon: true,
-      test_https: true
+      test_https: true,
+      cookie_exp: 1 // we want always fresh results for the bandwidth test
     },
     IPv6: {
       // google.com ipv6
