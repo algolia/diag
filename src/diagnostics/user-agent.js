@@ -30,9 +30,9 @@ function userAgent(cb) {
       ua.browser.version,
       ua.os.name,
       ua.os.version,
-      Date.now(),
-      Intl && Intl.DateTimeFormat().resolvedOptions().timeZone,
-      date.getTimezoneOffset && date.getTimezoneOffset(),
+      Date.now && Date.now() || 'n/a',
+      window.Intl && Intl.DateTimeFormat().resolvedOptions().timeZone || 'n/a',
+      date.getTimezoneOffset && date.getTimezoneOffset() || 'n/a',
       date.toString()
     ]]
   };
