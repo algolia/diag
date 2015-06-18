@@ -16,7 +16,7 @@ var sources = [
   'frontend/index.css',
   'frontend/bundle.js',
   'frontend/loader.svg',
-  'frontend/boomerang.js',
+  'frontend/boomerang.min.js',
   'frontend/boomerang/images/*',
   'frontend/CNAME'
 ];
