@@ -25,9 +25,21 @@ function emptySearch(cb) {
 
   // `algoliasearch` is using the debug module for heavy debugging
   // we want to get the full debug and output it in the results
-  __algolia.debug.enable('*');
+  __algolia.debug.enable('algoliasearch:*');
   __algolia.debug.log = function hackDebug(chunk) {
-    log += chunk;
+    // work around removing colors etc
+    // https://github.com/visionmedia/debug/issues/205
+    chunk = chunk.replace(/%c/g, '');
+    var args = Array.prototype.slice.call(arguments, 1);
+    args = args.reduce(function removeColors(newArgs, arg) {
+      if (!/^color: /.test(arg)) {
+        newArgs.push(arg);
+      }
+
+      return newArgs;
+    }, []);
+
+    log += util.format.apply(null, [chunk].concat(args)) + '\n';
   };
 
   var client = algoliasearch(q.applicationId, q.apiKey);
@@ -57,7 +69,7 @@ function emptySearch(cb) {
       pluck(content.hits, 'objectID'),
       content.nbHits,
       humanize(Date.now() - start),
-      log
+      '\n' + log
     ]);
 
     debug.disable();
