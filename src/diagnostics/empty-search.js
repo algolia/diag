@@ -25,7 +25,7 @@ function emptySearch(cb) {
 
   // `algoliasearch` is using the debug module for heavy debugging
   // we want to get the full debug and output it in the results
-  __algolia.debug.enable('algoliasearch:*');
+  __algolia.debug.enable('algoliasearch*');
   __algolia.debug.log = function hackDebug(chunk) {
     // work around removing colors etc
     // https://github.com/visionmedia/debug/issues/205

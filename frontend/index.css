@@ -57,3 +57,11 @@ html {
 .page {
   display: none;
 }
+
+.container .copy-failed {
+  font-size: 1.1em;
+}
+
+textarea#out {
+  width: 100%;
+}

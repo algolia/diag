@@ -25,7 +25,8 @@ function result(datasets) {
   var $out = $('#out');
   var out = '';
 
-  initCopyButton();
+  bindCopy();
+  bindSelectAll();
 
   var formatCleanAndWrite = flow(formatDataset, encode, write);
 
@@ -43,11 +44,12 @@ function result(datasets) {
     out += chunk;
   }
 
-  function initCopyButton() {
+  function bindCopy() {
     var $copy = $('#copy');
 
     var client = new ZeroClipboard($copy);
     client.on('copy', function(event) {
+      console.log(decode(out + linkToResults()).length)
       event.clipboardData.setData('text/plain', decode(out + linkToResults()));
     });
 
@@ -57,6 +59,14 @@ function result(datasets) {
 
     $copy.on('mouseleave', function() {
       $copy.tooltip('hide');
+    });
+  }
+
+  function bindSelectAll() {
+    var $select = $('#select-all');
+
+    $select.bind('click', function() {
+      $out.select();
     });
   }
 
