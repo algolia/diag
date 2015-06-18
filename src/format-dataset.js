@@ -14,7 +14,7 @@ function formatDataset(dataset) {
   }
 
   function formatRowValues(out, rowValue, rowValueIndex) {
-    return out + '  ⚫ ' + dataset.header[rowValueIndex] + ' → ' + rowValue + '\n';
+    return out + '  - ' + dataset.header[rowValueIndex] + ' > ' + rowValue + '\n';
   }
 
   return formattedDataset;

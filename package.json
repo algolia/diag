@@ -28,6 +28,7 @@
     "humanize-number": "0.0.2",
     "json-loader": "0.5.2",
     "lodash": "3.9.3",
+    "prettysize": "0.0.3",
     "queue": "3.1.0",
     "superagent": "1.2.0",
     "ua-parser-js": "0.7.7"

@@ -11,7 +11,8 @@ Current [diagnostics](src/diagnostics/):
   * [navigation timing](http://www.w3.org/TR/navigation-timing/) of the diag tool webpage
   * `/favicon.ico` download timing from big websites
   * Algolia [/diag](https://latency-dsn.algolia.net/diag) endpoint [resource timing](https://www.w3.org/TR/resource-timing/)
-  * [algoliasearch](https://github.com/algolia/algoliasearch-client-js) test
+  * [algoliasearch](https://github.com/algolia/algoliasearch-client-js) simple empty search
+  * Latency, bandwidth, ipv6 and mobile connection measurements using [lognormal/boomerang](https://github.com/lognormal/boomerang)
 
 ## dev mode
 
@@ -33,3 +34,16 @@ npm run serve-build
 npm run publish
 ```
 
+## [boomerang](https://github.com/lognormal/boomerang) build
+
+We use [lognormal/boomerang](https://github.com/lognormal/boomerang) as a way to gather
+even more information on the setup.
+
+The frontend/boomerang file was built with:
+
+```sh
+git clone git@github.com:lognormal/boomerang.git
+cd boomerang
+npm install -g uglifyjs
+make PLUGINS='plugins/rt.js plugins/bw.js plugins/ipv6.js plugins/mobile.js' MINIFIER='uglifyjs'
+```

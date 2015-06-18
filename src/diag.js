@@ -13,6 +13,7 @@ function diag() {
     timeout: timeout
   });
 
+  // all the diagnostics we will run
   [
     'user-agent',
     'ip',
@@ -21,7 +22,8 @@ function diag() {
     'navigation-timing',
     'favicons-timing',
     'algolia-API-timing',
-    'empty-search'
+    'empty-search',
+    'boomerang'
   ].map(requireIt).forEach(addToQueue);
 
   // diagnostic is a function here, it was required earlier
@@ -31,7 +33,7 @@ function diag() {
 
   // `job` is a function, it's one of the diagnostic
   jobs.on('timeout', function(next, job) {
-    emitter.emit('dataset', formatDatasetFromTimeout(job, timeout));
+    emitter.emit('dataset', formatDatasetFromTimeout(job.name, timeout));
     emitter.emit('timeout', job);
     next();
   });

@@ -16,13 +16,15 @@ var sources = [
   'frontend/index.css',
   'frontend/bundle.js',
   'frontend/loader.svg',
+  'frontend/boomerang.js',
+  'frontend/boomerang/images/*',
   'frontend/CNAME'
 ];
 
 var assetsFilter = filter([
   '**/*',
-  // do not rev $md5 theses files
-  '!index.html', '!CNAME'
+  // do not rev $md5 theses files but still copy them
+  '!index.html', '!CNAME', '!boomerang/images/*'
 ]);
 
 var indexFilter = filter('index.html');
