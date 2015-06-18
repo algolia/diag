@@ -15,6 +15,7 @@ var sources = [
   'frontend/index.html',
   'frontend/index.css',
   'frontend/bundle.js',
+  'frontend/loader.svg',
   'frontend/CNAME'
 ];
 
