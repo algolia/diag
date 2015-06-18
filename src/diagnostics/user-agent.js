@@ -1,5 +1,7 @@
 module.exports = userAgent;
 
+var title = userAgent.title = 'User-agent';
+
 function userAgent(cb) {
   var partial = require('lodash/function/partial');
   var UaParser = require('ua-parser-js');
@@ -10,7 +12,7 @@ function userAgent(cb) {
   var date = new Date();
 
   var dataset = {
-    title: 'User-agent',
+    title: title,
     header: [
       'browser-name',
       'browser-major',

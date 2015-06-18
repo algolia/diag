@@ -1,5 +1,8 @@
 module.exports = diag;
 
+// too hacky because global, nvm
+var currentDiagnostic;
+
 function diag() {
   var EventEmitter = require('events').EventEmitter;
 
@@ -33,7 +36,7 @@ function diag() {
 
   // `job` is a function, it's one of the diagnostic
   jobs.on('timeout', function(next, job) {
-    emitter.emit('dataset', formatDatasetFromTimeout(job.name, timeout));
+    emitter.emit('dataset', formatDatasetFromTimeout(currentDiagnostic.title, timeout));
     emitter.emit('timeout', job);
     next();
   });
@@ -72,6 +75,8 @@ function promiseWrap(diagnostic) {
 
   return function(cb) {
     var promise = new Promise(function(resolve, reject) {
+      currentDiagnostic = diagnostic;
+
       diagnostic(function(err, dataset) {
         if (err) {
           reject(err);
@@ -87,16 +92,16 @@ function promiseWrap(diagnostic) {
         cb(null, dataset);
       })
       .catch(function(err) {
-        err = formatDatasetFromError(err, diagnostic.name);
+        err = formatDatasetFromError(err, diagnostic.title);
 
         cb(null, err);
       });
   };
 }
 
-function formatDatasetFromError(err, diagnosticName) {
+function formatDatasetFromError(err, diagnosticTitle) {
   return {
-    title: 'ERROR: ' + diagnosticName,
+    title: 'ERROR: ' + diagnosticTitle,
     header: ['error.message', 'error.stack'],
     data: [[
       err.message,
@@ -105,12 +110,12 @@ function formatDatasetFromError(err, diagnosticName) {
   };
 }
 
-function formatDatasetFromTimeout(diagnosticName, timeout) {
+function formatDatasetFromTimeout(diagnosticTitle, timeout) {
   return {
-    title: 'TIMEOUT: ' + diagnosticName,
+    title: 'TIMEOUT: ' + diagnosticTitle,
     header: ['timeout'],
     data: [[
-      'Job ' + diagnosticName + ' timedout (' + timeout + 's)'
+      'Job ' + diagnosticTitle + ' timedout (after ' + timeout + 's)'
     ]]
   };
 }

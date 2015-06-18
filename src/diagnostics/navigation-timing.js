@@ -1,12 +1,14 @@
 module.exports = navigationTiming;
 
+var title = navigationTiming.title = 'Navigation timing from current page (ms)';
+
 function navigationTiming(cb) {
   var partial = require('lodash/function/partial');
 
   var formatTiming = require('../format-timing');
 
   var dataset = {
-    title: 'Navigation timing from current page (ms)',
+    title: title,
     header: formatTiming.header,
     data: []
   };

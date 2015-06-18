@@ -1,11 +1,13 @@
 module.exports = ip;
 
+var title = ip.title = 'request ip';
+
 function ip(cb) {
   var util = require('util');
 
   var request = require('superagent');
   var dataset = {
-    title: 'request ip',
+    title: title,
     header: ['request ip'],
     data: []
   };

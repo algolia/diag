@@ -1,5 +1,7 @@
 module.exports = faviconsTiming;
 
+var title = faviconsTiming.title = '`/favicon.ico` download';
+
 function faviconsTiming(cb) {
   var async = require('async');
 
@@ -13,7 +15,7 @@ function faviconsTiming(cb) {
   ];
 
   var dataset = {
-    title: '`/favicon.ico` download',
+    title: title,
     header: [
       'website',
       'time to download (ms)'

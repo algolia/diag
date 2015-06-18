@@ -1,5 +1,7 @@
 module.exports = emptySearch;
 
+emptySearch.title = 'Doing an empty client.search()';
+
 function emptySearch(cb) {
   /* global algoliasearch, __algolia */
   var debug = require('debug');
@@ -10,15 +12,17 @@ function emptySearch(cb) {
 
   var q = querystring.parse(document.location.search.slice(1));
 
+  emptySearch.title = util.format(
+    'Doing an empty search on %s:%s (%s)\n' +
+      'using JavaScript API client `algoliasearch@%s`',
+    q.applicationId,
+    q.indexName,
+    q.apiKey,
+    algoliasearch.version
+  );
+
   var dataset = {
-    title: util.format(
-      'Doing an empty search on %s:%s (%s)\n' +
-        'using JavaScript API client `algoliasearch@%s`',
-      q.applicationId,
-      q.indexName,
-      q.apiKey,
-      algoliasearch.version
-    ),
+    title: emptySearch.title,
     header: ['object ids', 'nb hits', 'time (ms)', 'full log'],
     data: []
   };

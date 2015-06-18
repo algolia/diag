@@ -1,11 +1,13 @@
 module.exports = algoliaAPITiming;
 
+var title = algoliaAPITiming.title = 'Resource timing';
+
 function algoliaAPITiming(cb) {
   var partial = require('lodash/function/partial');
 
   if (!('performance' in window)) {
     process.nextTick(partial(cb, null, {
-      title: 'Resource timing',
+      title: title,
       header: ['Error'],
       data: [['err: browser does not support `window.performance`']]
     }));
@@ -16,7 +18,7 @@ function algoliaAPITiming(cb) {
 
   var appId = 'test';
   var path = '/diag';
-  var runs = 10;
+  var runs = 3;
   var subTitle = 'Timing %s (ms)';
 
   var urls = [
@@ -29,7 +31,7 @@ function algoliaAPITiming(cb) {
   async.mapSeries(urls, benchUrl(subTitle, runs), cb);
 }
 
-function benchUrl(title, runs) {
+function benchUrl(subTitle, runs) {
 
   return function bench(url, cb) {
     var util = require('util');
@@ -41,7 +43,7 @@ function benchUrl(title, runs) {
 
     var dataset = {
       title: util.format(
-        title,
+        subTitle,
         url
       ),
       header: formatTiming.header,

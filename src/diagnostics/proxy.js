@@ -1,11 +1,13 @@
 module.exports = proxy;
 
+var title = proxy.title = 'proxy detection';
+
 function proxy(cb) {
   var util = require('util');
 
   var request = require('superagent');
   var dataset = {
-    title: 'proxy detection',
+    title: title,
     header: ['proxy'],
     data: []
   };
