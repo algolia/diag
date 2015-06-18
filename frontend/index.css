@@ -1,6 +1,65 @@
 html {
   overflow-y: scroll;
 }
+body {
+  padding-top: 100px;
+}
+
+#algolia-tools .navbar {
+  background: #0B1623;
+}
+
+#algolia-tools .navbar-brand span {
+  position: relative;
+  top: -4px;
+  font-size: .9em;
+  text-transform: uppercase;
+  color: white;
+}
+#algolia-tools .navbar-brand img {
+  position: relative;
+  top: -5px;
+  vertical-align: middle;
+}
+
+#algolia-tools h1 {
+  font-weight: 300;
+  font-size: 3em;
+  font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+#algolia-tools h2 {
+  font-weight: 600;
+  font-size: 1.8em;
+  font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#algolia-tools .btn{
+  box-shadow: none;
+  border: none;
+  text-shadow: none;
+  text-transform: uppercase;
+  font-size: 1.1em;
+}
+
+#algolia-tools .btn.btn-primary {
+  box-shadow: none;
+  border: solid 2px #4CAFD8;
+  color: #4CAFD8;
+  background: transparent;
+}
+
+#algolia-tools .btn.btn-default {
+  box-shadow: none;
+  color: #444;
+  background: #ccc;
+  font-size: 1em;
+}
+
+#algolia-tools .alert {
+  background: transparent;
+  box-shadow: none;
+  border-width: 2px;
+}
 
 .tap-dom .test .assert {
   padding-left: 1em;
@@ -24,15 +83,6 @@ html {
   overflow-y: scroll;
 }
 
-.jumbotron h1 {
-  margin-bottom: .5em;
-  font-size: 3em;
-}
-
-.jumbotron img {
-  vertical-align: bottom;
-}
-
 .progress {
   height: 40px;
 }
@@ -46,16 +96,9 @@ html {
   vertical-align: middle;
 }
 
-.jumbotron {
-  background-color: #fff
-}
 
 #advanced-options-form {
   margin-top: 1em;
-}
-
-.page {
-  display: none;
 }
 
 .container .copy-failed {
