@@ -53,3 +53,7 @@ html {
 #advanced-options-form {
   margin-top: 1em;
 }
+
+.page {
+  display: none;
+}

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var csso = require('gulp-csso');
 var filter = require('gulp-filter');
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
@@ -12,12 +13,15 @@ var uglify = require('gulp-uglify');
 
 var sources = [
   'frontend/index.html',
+  'frontend/index.css',
   'frontend/bundle.js',
   'frontend/CNAME'
 ];
 
 var assetsFilter = filter([
-  '**/*', '!index.html', '!CNAME'
+  '**/*',
+  // do not rev $md5 theses files
+  '!index.html', '!CNAME'
 ]);
 
 var indexFilter = filter('index.html');
@@ -41,6 +45,7 @@ gulp
   .pipe(indexFilter.restore())
   // let's work on assets
   .pipe(assetsFilter)
+  .pipe(gulpif(/index\.css$/, csso()))
   // minify them
   .pipe(gulpif(/bundle\.js$/, uglify()))
   // rev them (md5)

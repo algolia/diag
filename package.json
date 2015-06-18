@@ -35,9 +35,9 @@
   "devDependencies": {
     "browser-sync": "2.7.10",
     "bundle-collapser": "1.2.0",
-    "css-loader": "0.14.5",
     "eslint": "0.23.0",
     "gulp": "3.9.0",
+    "gulp-csso": "1.0.0",
     "gulp-filter": "2.0.2",
     "gulp-gh-pages": "0.5.2",
     "gulp-if": "1.2.5",
@@ -50,7 +50,6 @@
     "mversion": "1.10.0",
     "pretty-bytes": "2.0.1",
     "semver": "4.3.6",
-    "style-loader": "0.12.3",
     "webpack": "1.9.11",
     "webpack-dev-server": "1.9.0"
   },
