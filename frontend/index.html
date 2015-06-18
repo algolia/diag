@@ -8,33 +8,53 @@
   <title>Algolia diagnostic tool</title>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:300,400,600">
   <link rel="stylesheet" href="index.css">
 </head>
-<body class="container">
-  <div class="jumbotron">
-    <div class="text-right">
-      <img src="https://www.algolia.com/assets/flat2/algolia/algolia504x160_white.png" width="252">
-    </div>
+<body id="algolia-tools">
 
-    <h1>Diagnostic tool</h1>
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          <span><img alt="Algolia" src="https://d3ibatyzauff7b.cloudfront.net/assets/algolia256x80_dark.png" width="110"></span>
+          <span>Developpers</span>
+        </a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav pull-right">
+          <li class="active">
+            <a href="#">Tools</a>
+          </li>
+          <li>
+            <a href="https://www.algolia.com/doc">Documentation</a>
+          </li>
+        </ul>
+      </div><!-- /.nav-collapse -->
+    </div><!-- /.container -->
+  </nav>
+
+  <div class="container">
+    <h1>Connection Diagnostic</h1>
 
     <div class="pages">
       <div id="home" class="page">
-        <p>
+        <p class="lead">
           This website will issue various test on your setup to determine if there is a problem
           connecting to Algolia from your browser/network.
         </p>
 
         <form class="form-inline" method="GET">
           <p>
-            <button type="submit" id="start" href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Start</button>
+            <button type="submit" id="start" href="#" class="btn btn-primary btn-lg" role="button">
+              <span class="glyphicon glyphicon-flash"></span> Start Diagnostic
+            </button>
+            <a role="button" data-toggle="collapse" href="#advanced-options-form" aria-controls="advanced-options-form">
+              <span class="caret"></span> Advanced options
+            </a>
           </p>
 
           <div class="advanced-options">
-            <a role="button" data-toggle="collapse" href="#advanced-options-form" aria-expanded="false" aria-controls="advanced-options-form">
-              <span class="caret"></span> Options
-            </a>
-
             <div class="panel panel-default collapse" id="advanced-options-form">
               <div class="panel-body">
                 <div class="alert alert-warning" role="alert">Unless you know what you are doing, you do not need to change this</div>
@@ -76,12 +96,13 @@
 
         <div class="alert alert-success" role="alert" id="done">
           <p>
-            Success!
-            <button id="copy" title="Allright!" data-trigger="manual" class="btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy</button> the output and send it to support@algolia.com. You can also <a href="?" class="restart btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Start again</a>.
+            <strong>Success!</strong>
+            <button id="copy" title="Allright!" data-trigger="manual" class="btn btn-default" role="button"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy</button> the output and send it to <a href="mailto:support@algolia.com">support@algolia.com</a> -
+            You can also <a href="?" class="restart" role="button"> Start again</a>
           </p>
         </div>
 
-        <h2>Output:</h2>
+        <h2>Output</h2>
         <pre id="out"></pre>
       </div>
     </div>
