@@ -24,13 +24,14 @@ function boomerang(cb) {
 
   BOOMR.init({
     BW: {
-      base_url: '/boomerang/images/',
-      block_beacon: true
+      base_url: '//' + location.host + location.pathname + '/boomerang/images/',
+      block_beacon: true,
+      test_https: true
     },
     IPv6: {
       // google.com ipv6
       // from http://173.194.40.147/images/logo.png
-      ipv6_url: 'http://[0:0:0:0:0:ffff:adc2:2893]/images/logo.png'
+      ipv6_url: 'https://[0:0:0:0:0:ffff:adc2:2893]/images/logo.png'
     }
   });
 
@@ -41,11 +42,11 @@ function boomerang(cb) {
     // otherwise errors are swallowed
     setTimeout(function avoidBoomerangGlobalTryCatch() {
       dataset.data[0].push(
-        humanize(results.t_page),
-        humanize(results.t_resp),
-        prettysize(results.bw) + '/s',
-        humanize(results.lat),
-        humanize(results.ipv6_latency)
+        results.t_page && humanize(results.t_page) || 'n/a',
+        results.t_resp && humanize(results.t_resp) || 'n/a',
+        results.bw && prettysize(results.bw) + '/s' || 'n/a',
+        results.lat && humanize(results.lat) || 'n/a',
+        results.ipv6_latency && humanize(results.ipv6_latency) || 'n/a'
       );
 
       if (results['cpu.cnc']) {

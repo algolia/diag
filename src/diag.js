@@ -2,13 +2,14 @@ module.exports = diag;
 
 // too hacky because global, nvm
 var currentDiagnostic;
+var $currentDiagnostic = $('#current-diagnostic');
 
 function diag() {
   var EventEmitter = require('events').EventEmitter;
 
   var queue = require('queue');
 
-  var timeout = 3 * 60 * 1000;
+  var timeout = 25 * 1000;
 
   var emitter = new EventEmitter();
   var jobs = queue({
@@ -76,6 +77,7 @@ function promiseWrap(diagnostic) {
   return function(cb) {
     var promise = new Promise(function(resolve, reject) {
       currentDiagnostic = diagnostic;
+      $currentDiagnostic.text(diagnostic.title);
 
       diagnostic(function(err, dataset) {
         if (err) {
@@ -115,7 +117,7 @@ function formatDatasetFromTimeout(diagnosticTitle, timeout) {
     title: 'TIMEOUT: ' + diagnosticTitle,
     header: ['timeout'],
     data: [[
-      'Job ' + diagnosticTitle + ' timedout (after ' + timeout + 's)'
+      'Job ' + diagnosticTitle + ' timedout (after ' + Math.round(timeout / 1000) + 's)'
     ]]
   };
 }
