@@ -1,9 +1,6 @@
 html {
   overflow-y: scroll;
 }
-body {
-  padding-top: 100px;
-}
 
 #algolia-tools .navbar {
   background: #0B1623;
@@ -95,7 +92,7 @@ textarea#out {
           transition-duration: .20s;
 }
 
-#algolia-tools .navbar-brand {
+#algolia-tools .navbar {
   height: 62px;
   padding: 0 15px;
   line-height: 62px;
@@ -123,4 +120,10 @@ textarea#out {
   position: relative;
   /* omfg css fix */
   top: 10px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
 }
