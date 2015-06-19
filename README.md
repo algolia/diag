@@ -2,7 +2,7 @@
 
 `diag` is the [Algolia](https://www.algolia.com/) diagnostic tool.
 
-![screenshot](screenshot.gif)
+![screenshot](screenshot.png)
 
 Current [diagnostics](src/diagnostics/):
 
