@@ -1,6 +1,8 @@
 # diag
 
-`diag` is the Algolia diagnostic tool.
+`diag` is the [Algolia](https://www.algolia.com/) diagnostic tool.
+
+![screenshot](screenshot.gif)
 
 Current [diagnostics](src/diagnostics/):
 
