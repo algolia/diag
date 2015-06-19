@@ -32,7 +32,7 @@ function boomerang(cb) {
     IPv6: {
       // google.com ipv6
       // from http://173.194.40.147/images/logo.png
-      ipv6_url: 'https://[0:0:0:0:0:ffff:adc2:2893]/images/logo.png'
+      ipv6_url: 'https://[2a00:1450:400c:c09::67]/images/logo.png'
     }
   });
 
