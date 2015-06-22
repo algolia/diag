@@ -18,14 +18,13 @@ var sources = [
   'frontend/loader.svg',
   'frontend/mark-github.svg',
   'frontend/boomerang.min.js',
-  'frontend/boomerang/images/*',
-  'frontend/CNAME'
+  'frontend/boomerang/images/*'
 ];
 
 var assetsFilter = filter([
   '**/*',
   // do not rev $md5 theses files but still copy them
-  '!index.html', '!CNAME', '!boomerang/images/*'
+  '!index.html', '!boomerang/images/*'
 ]);
 
 var indexFilter = filter('index.html');

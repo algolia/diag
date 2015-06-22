@@ -42,6 +42,9 @@
             <button type="submit" id="start" href="#" class="btn btn-primary btn-lg" role="button">
               <span class="glyphicon glyphicon-flash"></span> Start Diagnostic
             </button>
+          </p>
+
+          <p>
             <a role="button" data-toggle="collapse" href="#advanced-options-form" aria-controls="advanced-options-form">
               <span class="caret"></span> Advanced options
             </a>
@@ -91,21 +94,20 @@
         <div class="alert alert-success" role="alert" id="done">
           <p>
             <strong>Success!</strong>
-            <button id="copy" title="Allright!" data-trigger="manual" class="btn btn-default" role="button"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy</button> the output and send it to <a href="mailto:support@algolia.com">support@algolia.com</a> -
-            You can also <a href="?" class="restart" role="button"> Start again</a>
+            <a id="send" title="Allright!" data-trigger="manual" class="btn btn-default" role="button"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Send</a> us the results or <a href="?" class="restart" role="button"> start again</a>
           </p>
         </div>
 
 
         <div class="results clearfix">
           <h2 class="pull-left">Output</h2>
-          <p class="copy-failed text-right">
-            If "copy" button did not work, <button id="select-all" class="btn btn-default btn-xs" role="button">Select all text</button>
-            then copy the output manually.
+
+          <p id="send-failed" class="collapse text-right">
+            <button id="copy" title="Allright!" data-trigger="manual" class="btn btn-default btn-xs" role="button">copy</button> <button id="select-all" class="btn btn-default btn-xs" role="button">Select all</button>
           </p>
         </div>
 
-        <textarea id="out" readonly></textarea>
+        <textarea id="out"></textarea>
       </div>
     </div>
   </div>

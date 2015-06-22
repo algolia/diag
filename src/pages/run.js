@@ -24,18 +24,9 @@ function run() {
   }
 
   function onEnd() {
-    var URLON = require('URLON');
     var showPage = require('../show-page');
 
     showPage('result', datasets);
-
-    // add the serialized result in the url so that copy pasting the url
-    // will work
-    history &&
-      history.replaceState &&
-      history.replaceState({
-        page: 'result'
-      }, null, document.location.pathname + '?page=result&' + URLON.stringify(datasets));
   }
 
   function onError(err, job) {

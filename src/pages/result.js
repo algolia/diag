@@ -3,45 +3,55 @@
 module.exports = result;
 
 function result(datasets) {
-  // used as a compressor/serializer to read/set our dataset into the url
-  var URLON = require('URLON');
-
-  if (!datasets) {
-    // when no datasets, it should be a pageload so the dataset is in the url
-    // we take everything after `page=result&`, that's our dataset
-
-    datasets = URLON.parse(location.search.slice(13));
-  }
-
   var flow = require('lodash/function/flow');
+  var isMobile = require('is-mobile')(navigator.userAgent);
 
   // some error messages can contain <htmltag> so we htmlentities the
   // .textContent = out, otherwise we may break the page
   var encode = require('entities').encodeHTML;
-  var decode = require('entities').decodeHTML;
 
   var formatDataset = require('../format-dataset');
 
   var $out = $('#out');
   var out = '';
 
-  bindCopy();
-  bindSelectAll();
+  var formatAndWrite = flow(formatDataset, write);
 
-  var formatCleanAndWrite = flow(formatDataset, encode, write);
-
-  datasets.forEach(formatCleanAndWrite);
+  datasets.forEach(formatAndWrite);
 
   write('==============\n');
   write('END');
   write('\n==============\n');
 
+  updateSendButton();
+
+  // most mobile browsers will fail at the copy or select-all buttons
+  if (!isMobile) {
+    bindCopy();
+    bindSelectAll();
+    $('#send-failed').show();
+  }
+
   $('#done').show();
   $('#run').hide();
 
   function write(chunk) {
-    $out[0].innerHTML += chunk;
+    $out[0].innerHTML += encode(chunk);
     out += chunk;
+  }
+
+  function updateSendButton() {
+    var util = require('util');
+    var $send = $('#send');
+
+    $send.attr('href',
+      util.format(
+        'mailto:%s?subject=%s&body=%s',
+        'support@algolia.com',
+        'diagnostic results',
+        encodeURIComponent(out)
+      )
+    );
   }
 
   function bindCopy() {
@@ -49,8 +59,7 @@ function result(datasets) {
 
     var client = new ZeroClipboard($copy);
     client.on('copy', function(event) {
-      console.log(decode(out + linkToResults()).length)
-      event.clipboardData.setData('text/plain', decode(out + linkToResults()));
+      event.clipboardData.setData('text/plain', out);
     });
 
     $copy.on('click', function() {
@@ -70,9 +79,4 @@ function result(datasets) {
     });
   }
 
-  function linkToResults() {
-    return '\n==============\nPermalink\n==============\n' +
-      document.location.origin + document.location.pathname + '?page=result&' + URLON.stringify(datasets) +
-      '\n==============\n';
-  }
 }
