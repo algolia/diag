@@ -122,8 +122,28 @@ textarea#out {
   top: 10px;
 }
 
+/* Sticky footer styles
+-------------------------------------------------- */
+/* http://getbootstrap.com/examples/sticky-footer/sticky-footer.css*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 40px;
+}
 .footer {
   position: absolute;
   bottom: 0;
-  left: 50%;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+}
+
+.footer p {
+  width: 10%;
+  border-top: 2px solid #4CAFD8;
+  margin: 0 auto;
+  line-height: 40px;
 }
