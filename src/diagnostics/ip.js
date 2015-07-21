@@ -13,7 +13,7 @@ function ip(cb) {
   };
 
   request
-    .get('//test-dsn.algolia.net/diag')
+    .get('//latency-dsn.algolia.net/diag')
     .timeout(20000)
     .end(requestDone);
 
