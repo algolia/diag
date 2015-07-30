@@ -25,9 +25,9 @@ var assetsFilter = filter([
   '**/*',
   // do not rev $md5 theses files but still copy them
   '!index.html', '!boomerang/images/*'
-]);
+], {restore: true});
 
-var indexFilter = filter('index.html');
+var indexFilter = filter('index.html', {restore: true});
 var userefAssets = useref.assets();
 
 gulp
@@ -45,7 +45,7 @@ gulp
   .pipe(useref())
   // now minify the index page
   .pipe(gulpif(/index\.html$/, minifyHtml()))
-  .pipe(indexFilter.restore())
+  .pipe(indexFilter.restore)
   // let's work on assets
   .pipe(assetsFilter)
   .pipe(gulpif(/index\.css$/, csso()))
@@ -53,7 +53,7 @@ gulp
   .pipe(gulpif(/bundle\.js$/, uglify()))
   // rev them (md5)
   .pipe(rev())
-  .pipe(assetsFilter.restore())
+  .pipe(assetsFilter.restore)
   // replace revs everywhere, inside css, js, html
   .pipe(revReplace())
   .pipe(gulp.dest('public'));

@@ -30,10 +30,10 @@ npm run build
 npm run serve-build
 ```
 
-## publish (https://algolia.github.io/diag/)
+## publish to https://algolia.github.io/diag/
 
 ```sh
-npm run publish
+npm run deploy
 ```
 
 ## [boomerang](https://github.com/lognormal/boomerang) build
