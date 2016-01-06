@@ -5,11 +5,11 @@ var title = algoliaAPITiming.title = 'Resource timing';
 function algoliaAPITiming(cb) {
   var partial = require('lodash/function/partial');
 
-  if (!('performance' in window)) {
+  if (!('performance' in window) || !('getEntriesByType' in window.performance)) {
     process.nextTick(partial(cb, null, {
       title: title,
       header: ['Error'],
-      data: [['err: browser does not support `window.performance`']]
+      data: [['err: browser does not support `window.performance` or `window.performance.getEntriesByType`']]
     }));
     return;
   }
