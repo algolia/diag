@@ -1,5 +1,7 @@
 module.exports = geolocation;
 
+var title = geolocation.title = 'Geolocation (browser + //nominatim.openstreetmap.org/reverse)';
+
 function geolocation(cb) {
   var util = require('util');
 
@@ -7,7 +9,7 @@ function geolocation(cb) {
   var request = require('superagent');
 
   var dataset = {
-    title: 'Geolocation (browser + //nominatim.openstreetmap.org/reverse)',
+    title: title,
     header: ['display_name', 'latitude', 'longitude'],
     data: []
   };
