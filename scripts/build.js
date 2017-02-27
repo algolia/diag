@@ -28,7 +28,6 @@ var assetsFilter = filter([
 ], {restore: true});
 
 var indexFilter = filter('index.html', {restore: true});
-var userefAssets = useref.assets();
 
 gulp
   .src(sources, {
@@ -40,8 +39,6 @@ gulp
   // this is how gulp-useref is used, no mistake
   // it finds builds blocks and then concatenate them
   // we could also use https://github.com/klei/gulp-inject
-  .pipe(userefAssets)
-  .pipe(userefAssets.restore())
   .pipe(useref())
   // now minify the index page
   .pipe(gulpif(/index\.html$/, minifyHtml()))
