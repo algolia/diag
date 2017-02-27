@@ -10,6 +10,7 @@ var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
+var debug = require('gulp-debug');
 
 var sources = [
   'frontend/index.html',
@@ -22,9 +23,9 @@ var sources = [
 ];
 
 var assetsFilter = filter([
-  '**/*',
+  '**',
   // do not rev $md5 theses files but still copy them
-  '!index.html', '!boomerang/images/*'
+  '!**/index.html', '!**/boomerang/images/*'
 ], {restore: true});
 
 var indexFilter = filter('index.html', {restore: true});
@@ -48,6 +49,7 @@ gulp
   .pipe(gulpif(/index\.css$/, csso()))
   // minify them
   .pipe(gulpif(/bundle\.js$/, uglify()))
+  .pipe(debug({title: 'coucou'}))
   // rev them (md5)
   .pipe(rev())
   .pipe(assetsFilter.restore)
