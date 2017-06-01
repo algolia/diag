@@ -21,9 +21,9 @@
   ],
   "dependencies": {
     "async": "^1.5.2",
-    "debug": "^2.6.1",
+    "debug": "^2.6.8",
     "entities": "1.1.1",
-    "es6-promise": "^4.0.5",
+    "es6-promise": "^4.1.0",
     "humanize-number": "0.0.2",
     "is-mobile": "0.2.2",
     "json-loader": "^0.5.4",
@@ -34,7 +34,7 @@
     "ua-parser-js": "^0.7.10"
   },
   "devDependencies": {
-    "browser-sync": "^2.11.2",
+    "browser-sync": "^2.18.12",
     "bundle-collapser": "1.2.1",
     "eslint": "0.24.1",
     "gh-pages": "^0.12.0",
