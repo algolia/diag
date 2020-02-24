@@ -3,7 +3,7 @@ module.exports = navigationTiming;
 var title = navigationTiming.title = 'Navigation timing from current page (ms)';
 
 function navigationTiming(cb) {
-  var partial = require('lodash/function/partial');
+  var partial = require('lodash/fp/partial');
 
   var formatTiming = require('../format-timing');
 

@@ -52,7 +52,7 @@ function emptySearch(cb) {
   var start = Date.now();
   index.search(function searchDone(err, content) {
     var humanize = require('humanize-number');
-    var pluck = require('lodash/collection/pluck');
+    var pluck = require('lodash/fp/pluck');
 
     if (err) {
       cb(null, {

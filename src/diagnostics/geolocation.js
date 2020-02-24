@@ -5,7 +5,7 @@ var title = geolocation.title = 'Geolocation (browser + //nominatim.openstreetma
 function geolocation(cb) {
   var util = require('util');
 
-  var partial = require('lodash/function/partial');
+  var partial = require('lodash/fp/partial');
   var request = require('superagent');
 
   var dataset = {

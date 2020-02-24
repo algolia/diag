@@ -3,7 +3,7 @@
 module.exports = result;
 
 function result(datasets) {
-  var flow = require('lodash/function/flow');
+  var flow = require('lodash/fp/flow');
   var isMobile = require('is-mobile')(navigator.userAgent);
 
   // some error messages can contain <htmltag> so we htmlentities the
