@@ -60,7 +60,7 @@
   "bugs": "https://github.com/algolia/diag/issues",
   "author": "Algolia SAS <support@algolia.com> (https://www.algolia.com)",
   "engines": {
-    "node": ">=0.8"
+    "node": ">=13.8"
   },
   "license": "MIT"
 }
