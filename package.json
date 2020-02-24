@@ -24,6 +24,7 @@
     "debug": "^2.6.9",
     "entities": "1.1.1",
     "es6-promise": "^4.1.0",
+    "gulp-debug": "^4.0.0",
     "humanize-number": "0.0.2",
     "is-mobile": "0.2.2",
     "json-loader": "^0.5.4",
@@ -52,6 +53,7 @@
     "pretty-bytes": "2.0.1",
     "semver": "^5.1.0",
     "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
   "homepage": "https://github.com/algolia/diag",
