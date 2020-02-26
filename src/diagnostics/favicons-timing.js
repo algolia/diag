@@ -38,7 +38,7 @@ function run(website, cb) {
 
   var img = new Image();
   img.addEventListener('load', loaded);
-  img.src = '//' + website + '/favicon.ico?' + Date.now();
+  img.src = 'https://' + website + '/favicon.ico?' + Date.now();
 
   function loaded() {
     var endTime = Date.now();

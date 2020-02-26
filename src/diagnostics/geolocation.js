@@ -32,7 +32,7 @@ function geolocation(cb) {
 
   function positionSuccess(position) {
     request
-      .get('//nominatim.openstreetmap.org/reverse')
+      .get('https://nominatim.openstreetmap.org/reverse')
       .timeout(20000)
       .query({
         format: 'json',

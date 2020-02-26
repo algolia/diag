@@ -26,7 +26,7 @@ function algoliaAPITiming(cb) {
     '%s//%s-1.algolianet.com%s',
     '%s//%s-2.algolianet.com%s',
     '%s//%s-3.algolianet.com%s'
-  ].map(formatUrl(location.protocol, appId, path));
+  ].map(formatUrl('https:', appId, path));
 
   async.mapSeries(urls, benchUrl(subTitle, runs), cb);
 }
@@ -60,7 +60,7 @@ function formatUrl(protocol, appId, path) {
   return function format(url) {
     return util.format(
       url,
-      location.protocol,
+      protocol,
       appId,
       path
     );
