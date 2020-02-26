@@ -70,7 +70,7 @@ function emptySearch(cb) {
 
     dataset.data.push([
       content.hits.map(function(hit) {
-        return hit.objectID
+        return hit.objectID;
       }),
       content.nbHits,
       humanize(Date.now() - start),
