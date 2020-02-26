@@ -1,15 +1,12 @@
+var path = require('path');
+
 module.exports = {
   entry: './frontend/index.js',
   output: {
-    path: './frontend/',
+    path: path.resolve(__dirname, './frontend/'),
     filename: 'bundle.js'
   },
   node: {
     fs: 'empty'
-  },
-  module: {
-    loaders: [{
-      test: /\.json$/, loader: 'json-loader'
-    }]
   }
 };

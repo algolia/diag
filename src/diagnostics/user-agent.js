@@ -3,7 +3,7 @@ module.exports = userAgent;
 var title = userAgent.title = 'User-agent';
 
 function userAgent(cb) {
-  var partial = require('lodash/function/partial');
+  var partial = require('lodash/partial');
   var UaParser = require('ua-parser-js');
 
   var parser = new UaParser(navigator.userAgent);

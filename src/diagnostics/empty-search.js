@@ -52,7 +52,6 @@ function emptySearch(cb) {
   var start = Date.now();
   index.search(function searchDone(err, content) {
     var humanize = require('humanize-number');
-    var pluck = require('lodash/collection/pluck');
 
     if (err) {
       cb(null, {
@@ -70,7 +69,9 @@ function emptySearch(cb) {
     }
 
     dataset.data.push([
-      pluck(content.hits, 'objectID'),
+      content.hits.map(function(hit) {
+        return hit.objectID;
+      }),
       content.nbHits,
       humanize(Date.now() - start),
       '\n' + log

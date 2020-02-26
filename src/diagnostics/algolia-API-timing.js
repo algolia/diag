@@ -3,7 +3,7 @@ module.exports = algoliaAPITiming;
 var title = algoliaAPITiming.title = 'Resource timing';
 
 function algoliaAPITiming(cb) {
-  var partial = require('lodash/function/partial');
+  var partial = require('lodash/partial');
 
   if (!('performance' in window) || !('getEntriesByType' in window.performance)) {
     process.nextTick(partial(cb, null, {
@@ -26,7 +26,7 @@ function algoliaAPITiming(cb) {
     '%s//%s-1.algolianet.com%s',
     '%s//%s-2.algolianet.com%s',
     '%s//%s-3.algolianet.com%s'
-  ].map(formatUrl(location.protocol, appId, path));
+  ].map(formatUrl('https:', appId, path));
 
   async.mapSeries(urls, benchUrl(subTitle, runs), cb);
 }
@@ -37,7 +37,7 @@ function benchUrl(subTitle, runs) {
     var util = require('util');
 
     var async = require('async');
-    var partial = require('lodash/function/partial');
+    var partial = require('lodash/partial');
 
     var formatTiming = require('../format-timing');
 
@@ -60,7 +60,7 @@ function formatUrl(protocol, appId, path) {
   return function format(url) {
     return util.format(
       url,
-      location.protocol,
+      protocol,
       appId,
       path
     );
@@ -74,8 +74,8 @@ function timeUrl(url, data) {
   return function time(n, cb) {
     var util = require('util');
 
-    var findLast = require('lodash/collection/findLast');
-    var random = require('lodash/number/random');
+    var findLast = require('lodash/findLast');
+    var random = require('lodash/random');
     var request = require('superagent');
 
     var formatTiming = require('../format-timing');

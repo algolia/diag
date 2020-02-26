@@ -5,7 +5,7 @@ var title = geolocation.title = 'Geolocation (browser + //nominatim.openstreetma
 function geolocation(cb) {
   var util = require('util');
 
-  var partial = require('lodash/function/partial');
+  var partial = require('lodash/partial');
   var request = require('superagent');
 
   var dataset = {
@@ -32,7 +32,7 @@ function geolocation(cb) {
 
   function positionSuccess(position) {
     request
-      .get('//nominatim.openstreetmap.org/reverse')
+      .get('https://nominatim.openstreetmap.org/reverse')
       .timeout(20000)
       .query({
         format: 'json',

@@ -18,6 +18,7 @@ var sources = [
   'frontend/bundle.js',
   'frontend/loader.svg',
   'frontend/mark-github.svg',
+  'frontend/algolia-logo.svg',
   'frontend/boomerang.min.js',
   'frontend/boomerang/images/*'
 ];

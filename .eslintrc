@@ -6,7 +6,7 @@
   },
   "rules": {
     "camelcase": 0,
-    "no-comma-dangle": 2,
+    "comma-dangle": ["error", "never"],
     "new-cap": 0,
     "no-process-exit": 0,
     "max-len": [
@@ -77,15 +77,11 @@
       true
     ],
     "no-underscore-dangle": 0,
-    "space-after-keywords": [
+    "keyword-spacing": 2,
+    "curly": 0,
+    "space-in-parens": [
       2,
-      "always"
-    ],
-    "curly": 0
-  },
-  "space-in-parens": [
-    2,
-    "never"
-  ],
-  "globals": {}
+      "never"
+    ]
+  }
 }
