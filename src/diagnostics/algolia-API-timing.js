@@ -3,7 +3,7 @@ module.exports = algoliaAPITiming;
 var title = algoliaAPITiming.title = 'Resource timing';
 
 function algoliaAPITiming(cb) {
-  var partial = require('lodash/fp/partial');
+  var partial = require('lodash/partial');
 
   if (!('performance' in window) || !('getEntriesByType' in window.performance)) {
     process.nextTick(partial(cb, null, {
@@ -37,7 +37,7 @@ function benchUrl(subTitle, runs) {
     var util = require('util');
 
     var async = require('async');
-    var partial = require('lodash/fp/partial');
+    var partial = require('lodash/partial');
 
     var formatTiming = require('../format-timing');
 
@@ -74,8 +74,8 @@ function timeUrl(url, data) {
   return function time(n, cb) {
     var util = require('util');
 
-    var findLast = require('lodash/fp/findLast');
-    var random = require('lodash/fp/random');
+    var findLast = require('lodash/findLast');
+    var random = require('lodash/random');
     var request = require('superagent');
 
     var formatTiming = require('../format-timing');

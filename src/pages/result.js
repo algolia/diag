@@ -3,7 +3,7 @@
 module.exports = result;
 
 function result(datasets) {
-  var flow = require('lodash/fp/flow');
+  var flow = require('lodash/flow');
   var isMobile = require('is-mobile')(navigator.userAgent);
 
   // some error messages can contain <htmltag> so we htmlentities the
@@ -15,7 +15,7 @@ function result(datasets) {
   var $out = $('#out');
   var out = '';
 
-  var formatAndWrite = flow(formatDataset, write);
+  var formatAndWrite = flow([formatDataset, write]);
 
   datasets.forEach(formatAndWrite);
 
