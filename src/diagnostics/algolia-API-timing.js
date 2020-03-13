@@ -15,8 +15,11 @@ function algoliaAPITiming(cb) {
   }
 
   var async = require('async');
+  var querystring = require('querystring');
 
-  var appId = 'latency';
+  var q = querystring.parse(document.location.search.slice(1));
+
+  var appId = (q.applicationId || 'latency').toLowerCase();
   var path = '/diag';
   var runs = 3;
   var subTitle = 'Timing %s (ms)';
