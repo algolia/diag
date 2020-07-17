@@ -28,7 +28,7 @@
     "humanize-number": "0.0.2",
     "is-mobile": "0.2.2",
     "json-loader": "0.5.4",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "prettysize": "0.0.3",
     "queue": "3.1.0",
     "superagent": "5.2.2",
