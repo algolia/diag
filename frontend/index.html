@@ -135,5 +135,15 @@
     ga('create', 'UA-32446386-7', 'auto');
     ga('send', 'pageview');
   </script>
+  <script>
+    const formParameters = ['applicationId','apiKey','indexName']
+    let params = (new URL(document.location)).searchParams;
+
+    for (const idx in formParameters){
+      if (params.has(formParameters[idx])){
+        document.getElementById(formParameters[idx]).value = params.get(formParameters[idx])
+      }
+    }
+  </script>
 </body>
 </html>
