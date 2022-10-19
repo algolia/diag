@@ -48,7 +48,7 @@
     "gulp-rev-replace": "0.4.3",
     "gulp-uglify": "2.0.1",
     "gulp-useref": "4.0.1",
-    "json": "9.0.4",
+    "json": "10.0.0",
     "mversion": "1.13.0",
     "pretty-bytes": "2.0.1",
     "semver": "5.1.0",
