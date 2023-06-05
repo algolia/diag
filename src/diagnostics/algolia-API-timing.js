@@ -20,7 +20,7 @@ function algoliaAPITiming(cb) {
   var q = querystring.parse(document.location.search.slice(1));
 
   var appId = (q.applicationId || 'latency').toLowerCase();
-  var path = '/diag';
+  var path = '/1/isalive';
   var runs = 3;
   var subTitle = 'Timing %s (ms)';
 
