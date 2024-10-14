@@ -49,7 +49,7 @@
     "gulp-uglify": "2.0.1",
     "gulp-useref": "4.0.1",
     "json": "9.0.4",
-    "mversion": "1.13.0",
+    "mversion": "2.0.0",
     "pretty-bytes": "2.0.1",
     "semver": "5.1.0",
     "webpack": "4.41.6",
