@@ -20,7 +20,7 @@
     "diagnostic"
   ],
   "dependencies": {
-    "async": "1.5.2",
+    "async": "2.6.4",
     "debug": "2.6.9",
     "entities": "1.1.1",
     "es6-promise": "4.1.0",
