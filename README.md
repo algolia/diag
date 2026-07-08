@@ -36,6 +36,12 @@ npm run serve-build
 npm run deploy
 ```
 
+## browser support
+
+Targets modern evergreen browsers: **Chrome ≥ 87, Edge ≥ 88, Firefox ≥ 78, Safari ≥ 14.1**
+(declared in `browserslist` and enforced via `build.target` in `vite.config.js`).
+Internet Explorer is not supported — the `algoliasearch` v5 client does not run there.
+
 ## [boomerang](https://github.com/lognormal/boomerang) build
 
 We use [lognormal/boomerang](https://github.com/lognormal/boomerang) as a way to gather
