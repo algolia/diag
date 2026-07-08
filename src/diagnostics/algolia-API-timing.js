@@ -21,9 +21,9 @@ function algoliaAPITiming(cb) {
     return;
   }
 
-  var q = Object.fromEntries(new URLSearchParams(document.location.search));
+  var params = new URLSearchParams(document.location.search);
 
-  var appId = (q.applicationId || 'latency').toLowerCase();
+  var appId = (params.get('applicationId') || 'latency').toLowerCase();
   var path = '/1/isalive';
   var runs = 3;
   var subTitle = 'Timing %s (ms)';

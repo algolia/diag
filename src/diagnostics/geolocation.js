@@ -15,7 +15,8 @@ function geolocation(cb) {
 
   if (!('geolocation' in navigator)) {
     dataset.data.push(['err: geolocation API not available']);
-    queueMicrotask(function() {
+    var defer = typeof queueMicrotask === 'function' ? queueMicrotask : function(fn) { Promise.resolve().then(fn); };
+    defer(function() {
       cb(null, dataset);
     });
     return;

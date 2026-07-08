@@ -11,7 +11,12 @@ emptySearch.title = 'Doing an empty client.search()';
 function emptySearch(cb) {
   var log = '';
 
-  var q = Object.fromEntries(new URLSearchParams(document.location.search));
+  var params = new URLSearchParams(document.location.search);
+  var q = {
+    applicationId: params.get('applicationId'),
+    indexName: params.get('indexName'),
+    apiKey: params.get('apiKey')
+  };
 
   emptySearch.title = format(
     'Doing an empty search on %s:%s (%s)\n' +

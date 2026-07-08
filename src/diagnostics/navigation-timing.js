@@ -19,7 +19,8 @@ function navigationTiming(cb) {
     dataset.data.push(formatTiming(timing));
   }
 
-  queueMicrotask(function() {
+  var defer = typeof queueMicrotask === 'function' ? queueMicrotask : function(fn) { Promise.resolve().then(fn); };
+  defer(function() {
     cb(null, dataset);
   });
 }
