@@ -14,7 +14,7 @@ export default defineConfig({
     // This is the knob Vite/esbuild actually enforces — Vite does not read
     // browserslist. CSS features in use (flexbox `gap`, the `inset` shorthand)
     // additionally require Safari 14.1, which the browserslist reflects.
-    target: ['es2020', 'chrome87', 'edge88', 'firefox78', 'safari14'],
+    target: ['es2020', 'chrome87', 'edge88', 'firefox78', 'safari14.1'],
     outDir: '../public',
     emptyOutDir: true,
   },

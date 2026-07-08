@@ -21,14 +21,14 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
       (err) => {
         clearTimeout(timer);
         reject(err);
-      },
+      }
     );
   });
 }
 
 /** Run every diagnostic sequentially, reporting progress as it goes. */
 export async function runDiagnostics(
-  handlers: RunHandlers,
+  handlers: RunHandlers
 ): Promise<Dataset[]> {
   const total = diagnostics.length;
   const results: Dataset[] = [];
@@ -44,7 +44,7 @@ export async function runDiagnostics(
       results.push(
         err instanceof DiagnosticTimeoutError
           ? timeoutDataset(diagnostic.title)
-          : errorDataset(err, diagnostic.title),
+          : errorDataset(err, diagnostic.title)
       );
     }
 
@@ -70,7 +70,7 @@ function timeoutDataset(diagnosticTitle: string): Dataset {
     header: ['timeout'],
     data: [
       [
-        `Job ${diagnosticTitle} timedout (after ${Math.round(TIMEOUT / 1000)}s)`,
+        `Job ${diagnosticTitle} timed out (after ${Math.round(TIMEOUT / 1000)}s)`,
       ],
     ],
   };

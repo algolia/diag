@@ -11,13 +11,23 @@ async function run(): Promise<Dataset> {
     return dataset;
   }
 
-  // Prefer the modern PerformanceNavigationTiming entry, fall back to the
-  // deprecated `performance.timing` for very old browsers.
-  const [navigation] = performance.getEntriesByType(
-    'navigation',
-  ) as PerformanceNavigationTiming[];
+  // Prefer the modern PerformanceNavigationTiming entry, falling back to the
+  // deprecated `performance.timing`. Guard `getEntriesByType` so a browser that
+  // has `performance` but not the Timeline API still reaches the fallback.
+  const navigation =
+    typeof performance.getEntriesByType === 'function'
+      ? (performance.getEntriesByType('navigation')[0] as
+          | PerformanceNavigationTiming
+          | undefined)
+      : undefined;
 
-  dataset.data.push(formatTiming(navigation ?? performance.timing));
+  const timing = navigation ?? performance.timing;
+  if (!timing) {
+    dataset.data.push(['err: no navigation timing available']);
+    return dataset;
+  }
+
+  dataset.data.push(formatTiming(timing));
 
   return dataset;
 }
