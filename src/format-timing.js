@@ -1,8 +1,6 @@
-module.exports = formatTiming;
+import humanize from 'humanize-number';
 
-function formatTiming(timing) {
-  var humanize = require('humanize-number');
-
+export default function formatTiming(timing) {
   return [
     humanize(Math.round(timing.connectEnd - timing.connectStart)),
     location.protocol === 'https:' && timing.secureConnectionStart ? humanize(Math.round(timing.connectEnd - timing.secureConnectionStart)) : 'n/a',

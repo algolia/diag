@@ -1,16 +1,17 @@
 /* global ZeroClipboard */
+import flow from 'lodash/flow';
+import isMobileFactory from 'is-mobile';
+import entities from 'entities';
 
-module.exports = result;
+import { format } from '../util.js';
+import formatDataset from '../format-dataset.js';
 
-function result(datasets) {
-  var flow = require('lodash/flow');
-  var isMobile = require('is-mobile')(navigator.userAgent);
+// some error messages can contain <htmltag> so we htmlentities the
+// .textContent = out, otherwise we may break the page
+var encode = entities.encodeHTML;
 
-  // some error messages can contain <htmltag> so we htmlentities the
-  // .textContent = out, otherwise we may break the page
-  var encode = require('entities').encodeHTML;
-
-  var formatDataset = require('../format-dataset');
+export default function result(datasets) {
+  var isMobile = isMobileFactory(navigator.userAgent);
 
   var $out = $('#out');
   var out = '';
@@ -41,11 +42,10 @@ function result(datasets) {
   }
 
   function updateSendButton() {
-    var util = require('util');
     var $send = $('#send');
 
     $send.attr('href',
-      util.format(
+      format(
         'mailto:%s?subject=%s&body=%s',
         'support@algolia.com',
         'diagnostic results',
@@ -78,5 +78,4 @@ function result(datasets) {
       $out.select();
     });
   }
-
 }

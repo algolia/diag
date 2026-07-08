@@ -1,6 +1,4 @@
-module.exports = formatDataset;
-
-function formatDataset(dataset) {
+export default function formatDataset(dataset) {
   var formattedDataset = '';
 
   formattedDataset += '==============\n';

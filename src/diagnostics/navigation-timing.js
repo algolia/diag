@@ -1,12 +1,10 @@
-module.exports = navigationTiming;
+import formatTiming from '../format-timing.js';
+
+export default navigationTiming;
 
 var title = navigationTiming.title = 'Navigation timing from current page (ms)';
 
 function navigationTiming(cb) {
-  var partial = require('lodash/partial');
-
-  var formatTiming = require('../format-timing');
-
   var dataset = {
     title: title,
     header: formatTiming.header,
@@ -21,5 +19,7 @@ function navigationTiming(cb) {
     dataset.data.push(formatTiming(timing));
   }
 
-  process.nextTick(partial(cb, null, dataset));
+  queueMicrotask(function() {
+    cb(null, dataset);
+  });
 }

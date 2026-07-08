@@ -1,14 +1,36 @@
-module.exports = diag;
+import { EventEmitter } from 'events';
+import queue from 'queue';
+
+import userAgent from './diagnostics/user-agent.js';
+import ip from './diagnostics/ip.js';
+import proxy from './diagnostics/proxy.js';
+import geolocation from './diagnostics/geolocation.js';
+import navigationTiming from './diagnostics/navigation-timing.js';
+import faviconsTiming from './diagnostics/favicons-timing.js';
+import algoliaAPITiming from './diagnostics/algolia-API-timing.js';
+import emptySearch from './diagnostics/empty-search.js';
+import boomerang from './diagnostics/boomerang.js';
+
+export default diag;
+
+// all the diagnostics we will run, in order
+var diagnostics = [
+  userAgent,
+  ip,
+  proxy,
+  geolocation,
+  navigationTiming,
+  faviconsTiming,
+  algoliaAPITiming,
+  emptySearch,
+  boomerang
+];
 
 // too hacky because global, nvm
 var currentDiagnostic;
 var $currentDiagnostic = $('#current-diagnostic');
 
 function diag() {
-  var EventEmitter = require('events').EventEmitter;
-
-  var queue = require('queue');
-
   var timeout = 25 * 1000;
 
   var emitter = new EventEmitter();
@@ -17,20 +39,9 @@ function diag() {
     timeout: timeout
   });
 
-  // all the diagnostics we will run
-  [
-    'user-agent',
-    'ip',
-    'proxy',
-    'geolocation',
-    'navigation-timing',
-    'favicons-timing',
-    'algolia-API-timing',
-    'empty-search',
-    'boomerang'
-  ].map(requireIt).forEach(addToQueue);
+  diagnostics.forEach(addToQueue);
 
-  // diagnostic is a function here, it was required earlier
+  // diagnostic is a function here, it was imported earlier
   function addToQueue(diagnostic) {
     jobs.push(promiseWrap(diagnostic));
   }
@@ -65,15 +76,9 @@ function diag() {
   return emitter;
 }
 
-function requireIt(file) {
-  return require('./diagnostics/' + file);
-}
-
 // we wrap in Promise so that any uncaught will.. get caught
 // and we can show it
 function promiseWrap(diagnostic) {
-  var Promise = window.Promise || require('es6-promise').Promise;
-
   return function(cb) {
     var promise = new Promise(function(resolve, reject) {
       currentDiagnostic = diagnostic;

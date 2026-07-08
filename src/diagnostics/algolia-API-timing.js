@@ -1,12 +1,19 @@
-module.exports = algoliaAPITiming;
+import async from 'async';
+import partial from 'lodash/partial';
+import findLast from 'lodash/findLast';
+import random from 'lodash/random';
+import request from 'superagent';
+
+import { format } from '../util.js';
+import formatTiming from '../format-timing.js';
+
+export default algoliaAPITiming;
 
 var title = algoliaAPITiming.title = 'Resource timing';
 
 function algoliaAPITiming(cb) {
-  var partial = require('lodash/partial');
-
   if (!('performance' in window) || !('getEntriesByType' in window.performance)) {
-    process.nextTick(partial(cb, null, {
+    queueMicrotask(partial(cb, null, {
       title: title,
       header: ['Error'],
       data: [['err: browser does not support `window.performance` or `window.performance.getEntriesByType`']]
@@ -14,10 +21,7 @@ function algoliaAPITiming(cb) {
     return;
   }
 
-  var async = require('async');
-  var querystring = require('querystring');
-
-  var q = querystring.parse(document.location.search.slice(1));
+  var q = Object.fromEntries(new URLSearchParams(document.location.search));
 
   var appId = (q.applicationId || 'latency').toLowerCase();
   var path = '/1/isalive';
@@ -35,17 +39,9 @@ function algoliaAPITiming(cb) {
 }
 
 function benchUrl(subTitle, runs) {
-
   return function bench(url, cb) {
-    var util = require('util');
-
-    var async = require('async');
-    var partial = require('lodash/partial');
-
-    var formatTiming = require('../format-timing');
-
     var dataset = {
-      title: util.format(
+      title: format(
         subTitle,
         url
       ),
@@ -58,10 +54,8 @@ function benchUrl(subTitle, runs) {
 }
 
 function formatUrl(protocol, appId, path) {
-  var util = require('util');
-
-  return function format(url) {
-    return util.format(
+  return function formatOne(url) {
+    return format(
       url,
       protocol,
       appId,
@@ -71,18 +65,9 @@ function formatUrl(protocol, appId, path) {
 }
 
 function timeUrl(url, data) {
-
   // this is the function called by async.times
   // https://github.com/caolan/async#times
   return function time(n, cb) {
-    var util = require('util');
-
-    var findLast = require('lodash/findLast');
-    var random = require('lodash/random');
-    var request = require('superagent');
-
-    var formatTiming = require('../format-timing');
-
     var timedUrl = url + '?t=' + Date.now();
 
     request
@@ -93,7 +78,7 @@ function timeUrl(url, data) {
     function requestDone(err/*, res*/) {
       if (err) {
         data.push([
-          util.format(
+          format(
             'err: could not request, err was %s',
             err
           )

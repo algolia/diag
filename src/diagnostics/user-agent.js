@@ -1,11 +1,10 @@
-module.exports = userAgent;
+import UaParser from 'ua-parser-js';
+
+export default userAgent;
 
 var title = userAgent.title = 'User-agent';
 
 function userAgent(cb) {
-  var partial = require('lodash/partial');
-  var UaParser = require('ua-parser-js');
-
   var parser = new UaParser(navigator.userAgent);
   var ua = parser.getResult();
 
@@ -57,5 +56,7 @@ function userAgent(cb) {
     );
   }
 
-  process.nextTick(partial(cb, null, dataset));
+  queueMicrotask(function() {
+    cb(null, dataset);
+  });
 }

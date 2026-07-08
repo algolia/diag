@@ -1,13 +1,12 @@
-module.exports = geolocation;
+import request from 'superagent';
+
+import { format } from '../util.js';
+
+export default geolocation;
 
 var title = geolocation.title = 'Geolocation (browser + //nominatim.openstreetmap.org/reverse)';
 
 function geolocation(cb) {
-  var util = require('util');
-
-  var partial = require('lodash/partial');
-  var request = require('superagent');
-
   var dataset = {
     title: title,
     header: ['display_name', 'latitude', 'longitude'],
@@ -16,7 +15,9 @@ function geolocation(cb) {
 
   if (!('geolocation' in navigator)) {
     dataset.data.push(['err: geolocation API not available']);
-    process.nextTick(partial(cb, null, dataset));
+    queueMicrotask(function() {
+      cb(null, dataset);
+    });
     return;
   }
 
@@ -45,7 +46,7 @@ function geolocation(cb) {
     function reverseGeocodeDone(err, res) {
       if (err) {
         dataset.data.push([
-          util.format(
+          format(
             'err: could not reverse geocode position, error was %s',
             err
           ),
@@ -66,7 +67,7 @@ function geolocation(cb) {
 
   function positionError(err) {
     dataset.data.push([
-      util.format(
+      format(
         'err: could not get position, error was %s',
         err.message
       )

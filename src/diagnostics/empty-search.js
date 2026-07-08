@@ -1,18 +1,19 @@
-module.exports = emptySearch;
+/* global algoliasearch, __algolia */
+import debug from 'debug';
+import humanize from 'humanize-number';
+
+import { format } from '../util.js';
+
+export default emptySearch;
 
 emptySearch.title = 'Doing an empty client.search()';
 
 function emptySearch(cb) {
-  /* global algoliasearch, __algolia */
-  var debug = require('debug');
-  var querystring = require('querystring');
-  var util = require('util');
-
   var log = '';
 
-  var q = querystring.parse(document.location.search.slice(1));
+  var q = Object.fromEntries(new URLSearchParams(document.location.search));
 
-  emptySearch.title = util.format(
+  emptySearch.title = format(
     'Doing an empty search on %s:%s (%s)\n' +
       'using JavaScript API client `algoliasearch@%s`',
     q.applicationId,
@@ -43,7 +44,7 @@ function emptySearch(cb) {
       return newArgs;
     }, []);
 
-    log += util.format.apply(null, [chunk].concat(args)) + '\n';
+    log += format.apply(null, [chunk].concat(args)) + '\n';
   };
 
   var client = algoliasearch(q.applicationId, q.apiKey);
@@ -51,14 +52,12 @@ function emptySearch(cb) {
 
   var start = Date.now();
   index.search(function searchDone(err, content) {
-    var humanize = require('humanize-number');
-
     if (err) {
       cb(null, {
         title: dataset.title,
         header: ['Error'],
         data: [[
-          util.format(
+          format(
             'err: could not do an empty search, error was %s',
             err.message
           )

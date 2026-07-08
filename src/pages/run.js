@@ -1,8 +1,7 @@
-module.exports = run;
+import diag from '../diag.js';
+import showPage from '../show-page.js';
 
-function run() {
-  var diag = require('../diag');
-
+export default function run() {
   var $progress = $('.progress-bar');
 
   var done = 0;
@@ -24,8 +23,6 @@ function run() {
   }
 
   function onEnd() {
-    var showPage = require('../show-page');
-
     showPage('result', datasets);
   }
 
