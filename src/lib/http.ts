@@ -28,7 +28,12 @@ export async function httpGet(
   const timer = setTimeout(() => controller.abort(), timeout);
 
   try {
-    return await fetch(target, { signal: controller.signal });
+    const res = await fetch(target, { signal: controller.signal });
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
+    }
+
+    return res;
   } catch (err) {
     if (controller.signal.aborted) {
       throw new RequestTimeoutError(url, timeout);
