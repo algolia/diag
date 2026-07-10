@@ -1,15 +1,14 @@
-module.exports = boomerang;
+/* global BOOMR */
+import prettysize from 'prettysize';
+import humanize from 'humanize-number';
+
+import { format } from '../util.js';
+
+export default boomerang;
 
 var title = boomerang.title = 'Network measurements using lognormal/boomerang';
 
 function boomerang(cb) {
-  /* global BOOMR */
-
-  var util = require('util');
-
-  var prettysize = require('prettysize');
-  var humanize = require('humanize-number');
-
   var dataset = {
     title: title,
     header: [
@@ -57,7 +56,7 @@ function boomerang(cb) {
 
       if (results['scr.xy']) {
         dataset.header.push('screen');
-        dataset.data[0].push(util.format(
+        dataset.data[0].push(format(
           'resolution: %s, dpi: %s, bpp: %s, orientation: %s',
           results['scr.xy'],
           results['scr.dpx'],
@@ -68,7 +67,7 @@ function boomerang(cb) {
 
       if (results['mob.type']) {
         dataset.header.push('mobile connection');
-        dataset.data[0].push(util.format(
+        dataset.data[0].push(format(
           'connection type: %s, connection bandwidth: %s (MB/s)',
           results['mob.type'],
           results['mob.bw']

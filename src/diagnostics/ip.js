@@ -1,11 +1,12 @@
-module.exports = ip;
+import request from 'superagent';
+
+import { format } from '../util.js';
+
+export default ip;
 
 var title = ip.title = 'request ip';
 
 function ip(cb) {
-  var util = require('util');
-
-  var request = require('superagent');
   var dataset = {
     title: title,
     header: ['request ip'],
@@ -20,7 +21,7 @@ function ip(cb) {
   function requestDone(err, res) {
     if (err) {
       dataset.data.push([
-        util.format(
+        format(
           'err: cannot get ip, err was: %s',
           err
         )

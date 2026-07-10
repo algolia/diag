@@ -1,7 +1,5 @@
-var querystring = require('querystring');
+import showPage from '../src/show-page.js';
 
-var showPage = require('../src/show-page');
-
-var page = querystring.parse(location.search.slice(1)).page || 'home';
+const page = new URLSearchParams(location.search).get('page') || 'home';
 
 showPage(page);

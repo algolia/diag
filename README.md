@@ -41,7 +41,7 @@ npm run deploy
 We use [lognormal/boomerang](https://github.com/lognormal/boomerang) as a way to gather
 even more information on the setup.
 
-The frontend/boomerang file was built with:
+The frontend/static/boomerang file was built with:
 
 ```sh
 git clone git@github.com:lognormal/boomerang.git

@@ -1,6 +1,2 @@
 public/
-frontend/bundle.*
-
-# gulp-gh-pages cache
-.publish/
 node_modules

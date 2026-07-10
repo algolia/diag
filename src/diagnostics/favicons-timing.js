@@ -1,10 +1,11 @@
-module.exports = faviconsTiming;
+import async from 'async';
+import humanize from 'humanize-number';
+
+export default faviconsTiming;
 
 var title = faviconsTiming.title = '`/favicon.ico` download';
 
 function faviconsTiming(cb) {
-  var async = require('async');
-
   var websites = [
     'www.google.com',
     'www.baidu.com',
@@ -31,8 +32,6 @@ function faviconsTiming(cb) {
 }
 
 function run(website, cb) {
-  var humanize = require('humanize-number');
-
   var timeout = setTimeout(timedout, 10000);
   var startTime = Date.now();
 

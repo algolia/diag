@@ -1,11 +1,12 @@
-module.exports = proxy;
+import request from 'superagent';
+
+import { format } from '../util.js';
+
+export default proxy;
 
 var title = proxy.title = 'proxy detection';
 
 function proxy(cb) {
-  var util = require('util');
-
-  var request = require('superagent');
   var dataset = {
     title: title,
     header: ['proxy'],
@@ -20,7 +21,7 @@ function proxy(cb) {
   function requestDone(err, res) {
     if (err) {
       dataset.data.push([
-        util.format(
+        format(
           'err: cannot detect proxy, err was: %s',
           err
         )
