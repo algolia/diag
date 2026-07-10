@@ -1,5 +1,5 @@
 import { el } from '../lib/dom';
-import { copyIcon, sendIcon } from '../lib/icons';
+import { copyIcon } from '../lib/icons';
 
 export function renderResult(app: HTMLElement, output: string): void {
   const out = el('textarea', {
@@ -9,16 +9,14 @@ export function renderResult(app: HTMLElement, output: string): void {
   });
   out.value = output;
 
-  const send = el(
+  const support = el(
     'a',
-    { id: 'send', class: 'btn btn--default btn--sm', role: 'button' },
-    sendIcon(),
-    el('span', {}, 'Send'),
+    { id: 'send', class: 'link', role: 'button' },
+    'contact Algolia support',
   );
-  send.href =
-    'mailto:support@algolia.com' +
-    `?subject=${encodeURIComponent('diagnostic results')}` +
-    `&body=${encodeURIComponent(output)}`;
+  support.href = 'https://support.algolia.com/';
+  support.target = '_blank';
+  support.rel = 'noopener noreferrer';
 
   const copyLabel = el('span', {}, 'Copy');
   const copy = el(
@@ -48,9 +46,9 @@ export function renderResult(app: HTMLElement, output: string): void {
       'p',
       { class: 'alert alert--success' },
       el('strong', {}, 'Success!'),
-      ' ',
-      send,
-      ' us the results or ',
+      ' Copy the results and ',
+      support,
+      ' or ',
       el('a', { href: '?', class: 'link', role: 'button' }, 'start again'),
     ),
     el(
