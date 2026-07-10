@@ -1,139 +1,66 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Algolia diagnostic tool</title>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:300,400,600">
-  <link rel="stylesheet" href="index-b0909ee24b.css">
-</head>
-<body id="algolia-tools">
-
-  <nav class="navbar navbar-static-top">
-    <div class="container">
-      <div class="pull-left">
-        <a href="." title="start again">
-          <img alt="Algolia" src="algolia-logo-875ff5fb0d.svg" width="128" height="44">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Algolia diagnostic tool</title>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <script type="module" crossorigin src="./assets/index-LqVPGsu5.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DooBlXm0.css">
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="navbar__brand" href="." title="Start again">
+          <img alt="Algolia" src="./assets/algolia-logo-C0fpMybV.svg" height="28" />
+        </a>
+        <a
+          class="navbar__github"
+          href="https://github.com/algolia/diag"
+          title="Go to the GitHub repository for this project"
+        >
+          <img src="data:image/svg+xml,%3csvg%20height='1024'%20width='1024'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill='%2321243d'%20d='M512%200C229.252%200%200%20229.25199999999995%200%20512c0%20226.251%20146.688%20418.126%20350.155%20485.813%2025.593%204.686%2034.937-11.125%2034.937-24.626%200-12.188-0.469-52.562-0.718-95.314-128.708%2023.46-161.707-31.541-172.469-60.373-5.525-14.809-30.407-60.249-52.398-72.263-17.988-9.828-43.26-33.237-0.917-33.735%2040.434-0.476%2069.348%2037.308%2078.471%2052.75%2045.938%2077.749%20119.876%2055.627%20148.999%2042.5%204.654-32.999%2017.902-55.627%2032.501-68.373-113.657-12.939-233.22-56.875-233.22-253.063%200-55.94%2019.968-101.561%2052.658-137.404-5.22-12.999-22.844-65.095%205.063-135.563%200%200%2042.937-13.749%20140.811%2052.501%2040.811-11.406%2084.594-17.031%20128.124-17.22%2043.499%200.188%2087.314%205.874%20128.188%2017.28%2097.689-66.311%20140.686-52.501%20140.686-52.501%2028%2070.532%2010.375%20122.564%205.124%20135.499%2032.811%2035.844%2052.626%2081.468%2052.626%20137.404%200%20196.686-119.751%20240-233.813%20252.686%2018.439%2015.876%2034.748%2047.001%2034.748%2094.748%200%2068.437-0.686%20123.627-0.686%20140.501%200%2013.625%209.312%2029.561%2035.25%2024.562C877.436%20929.998%201024%20738.126%201024%20512%201024%20229.25199999999995%20794.748%200%20512%200z'%20/%3e%3c/svg%3e" width="24" height="24" alt="GitHub" />
         </a>
       </div>
+    </header>
 
-      <div class="pull-right">
-        <a href="https://github.com/algolia/diag" title="Go to github repository for this project"><img class="mark-github" src="mark-github-32319561e7.svg" width="32" height="32"></a>
-      </div>
-    </div>
-  </nav>
+    <main class="container">
+      <h1 class="title">Connection Diagnostic</h1>
+      <div id="app"></div>
+    </main>
 
-  <div class="container">
-    <h1>Connection Diagnostic</h1>
+    <footer class="footer">
+      <a href="https://www.algolia.com" title="Back to the algolia.com website"
+        >algolia.com</a
+      >
+    </footer>
 
-    <div class="pages">
-      <div id="home" class="page">
-        <p class="lead">
-          This website will issue various tests on your setup to determine if there is a problem
-          connecting to Algolia from your browser/network.
-        </p>
+    <script src="./boomerang.min.js"></script>
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        ((i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date()));
+        ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        'script',
+        '//www.google-analytics.com/analytics.js',
+        'ga'
+      );
 
-        <form class="form-inline" method="GET">
-          <p>
-            <button type="submit" id="start" href="#" class="btn btn-primary btn-lg" role="button">
-              <span class="glyphicon glyphicon-flash"></span> Start Diagnostic
-            </button>
-          </p>
-
-          <p>
-            <a role="button" data-toggle="collapse" href="#advanced-options-form" aria-controls="advanced-options-form">
-              <span class="caret"></span> Advanced options
-            </a>
-          </p>
-
-          <div class="advanced-options">
-            <div class="panel panel-default collapse" id="advanced-options-form">
-              <div class="panel-body">
-                <div class="alert alert-warning" role="alert">Unless you know what you are doing, you do not need to change this</div>
-
-                <div class="form-group">
-                  <label for="applicationId">Application ID</label>
-                  <input type="text" class="form-control" id="applicationId" placeholder="applicationId" value="latency" name="applicationId" required>
-                </div>
-                <div class="form-group">
-                  <label for="apiKey">API key</label>
-                  <input type="text" class="form-control" id="apiKey" placeholder="apiKey" value="6be0576ff61c053d5f9a3225e2a90f76" name="apiKey" required>
-                </div>
-                <div class="form-group">
-                  <label for="indexName">Index name</label>
-                  <input type="text" class="form-control" id="indexName" placeholder="indexName" value="contacts" name="indexName" required>
-                </div>
-                <input type="hidden" name="page" value="run" />
-                <input type="hidden" name="t" />
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div id="run" class="page">
-        <div class="alert alert-info" role="alert" id="done">
-          <p>Please <b>wait here</b> while the diagnostic is running, it should not take too long.
-          </p>
-          <p>Current diagnostic: <b id="current-diagnostic"></b></p>
-        </div>
-
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;">
-            <img src="loader-be00fc4a29.svg" width="25" height="25"> <span>Tests: 0/0</span>
-          </div>
-        </div>
-      </div>
-
-      <div id="result" class="page">
-
-        <div class="alert alert-success" role="alert" id="done">
-          <p>
-            <strong>Success!</strong>
-            <a id="send" title="All right!" data-trigger="manual" class="btn btn-default" role="button"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Send</a> us the results or <a href="?" class="restart" role="button"> start again</a>
-          </p>
-        </div>
-
-
-        <div class="results clearfix">
-          <h2 class="pull-left">Output</h2>
-
-          <p id="send-failed" class="collapse text-right">
-            <button id="copy" title="All right!" data-trigger="manual" class="btn btn-default btn-xs" role="button">copy</button> <button id="select-all" class="btn btn-default btn-xs" role="button">Select all</button>
-          </p>
-        </div>
-
-        <textarea id="out"></textarea>
-      </div>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="container">
-      <p class="small text-center">
-        <a href="https://www.algolia.com" title="back to algolia.com website">algolia.com</a>
-      </p>
-    </div>
-  </footer>
-
-  <script src="//cdn.jsdelivr.net/jquery/2/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/bootstrap/3/js/bootstrap.min.js"></script>
-  <script src="//cdn.jsdelivr.net/zeroclipboard/2/ZeroClipboard.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/algoliasearch@3/dist/algoliasearch.min.js"></script>
-  <script src="boomerang-9ce18dfd98.min.js"></script>
-  <script src="bundle-5272a894c5.js"></script>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-32446386-7', 'auto');
-    ga('send', 'pageview');
-  </script>
-</body>
+      ga('create', 'UA-32446386-7', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
 </html>
