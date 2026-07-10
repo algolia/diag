@@ -10,6 +10,11 @@ export default defineConfig({
   // fetches at runtime by a URL it builds itself, so Vite can't discover them).
   publicDir: 'static',
   build: {
+    // Explicit browser floor (kept in sync with `browserslist` in package.json).
+    // This is the knob Vite/esbuild actually enforces — Vite does not read
+    // browserslist. CSS features in use (flexbox `gap`, the `inset` shorthand)
+    // additionally require Safari 14.1, which the browserslist reflects.
+    target: ['es2020', 'chrome87', 'edge88', 'firefox78', 'safari14.1'],
     outDir: '../public',
     emptyOutDir: true,
   },
